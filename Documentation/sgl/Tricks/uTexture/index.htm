@@ -1,0 +1,96 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Micro Texturing</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="../index.htm">Up</a></nobr><br><nobr><a href="../Shell/index.htm">Shell</a></nobr><br><nobr>Micro&nbsp;Texturing</nobr><br><nobr><a href="../Flame/index.htm">Dynamic&nbsp;Lighting</a></nobr><br><nobr><a href="../AddBlend/index.htm">Additive&nbsp;Blending</a></nobr><br><nobr><a href="../ChromaKey/index.htm">Chroma&nbsp;Key</a></nobr><br><nobr><a href="../IsPVRsh/index.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="../printf3D/index.htm">Ascii&nbsp;Text&nbsp;in&nbsp;3D</a></nobr><br><nobr><a href="../TableFog/index.htm">Table&nbsp;Fog</a></nobr><br><nobr><a href="../AppHint/index.htm">AppHints</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><strong><font face="Verdana">Micro Texturing</font></strong></p>
+
+<p align="left"><small><font face="Verdana">Micro-Texturing is a technique used to show more
+surface detail when looking closely at wood, marble, ground, etc.</font></small></p>
+
+<p align="left"><small><font face="Verdana">Micro-Texturing is very easily realised on
+PowerVR by defining a translucent 'shell' around the object which should be
+micro-textured. The texture of the translucent shell should be the more detailed texture,
+whilst the more coarse texture is wrapped across the object itself. The trick is to
+automatically change the opacity of the translucent shell as the camera is brought closer,
+from <em>completely transparent</em> (when the camera is far away) to <em>more opaque</em>
+(when the camera is brought closely to the object).</font></small></p>
+
+<p align="left"><small><font face="Verdana">The easiest way to do this is to make use of the
+fact that, as the camera is moved closer to a surface texture, the mipmap level of that
+texture changes. By supplying the mipmap levels for the translucent shell texture, and
+altering the translucency for the different mipmap levels, the effect of a surface
+changing opacity as the camera is brought closer can be realised.</font></small></p>
+
+<p align="left">&nbsp;</p>
+
+<table border="1" cellPadding="10" cellSpacing="2">
+<tbody>
+  <tr>
+    <td vAlign="center"><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/uTdrct1.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="75"></font></small><p><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/uTdrct2.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="75"></font></small></p>
+    <p><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/uTdrct3.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="75"></font></small></td>
+    <td align="middle" vAlign="center"><h2><small><small><font face="Verdana"><em>PowerSGL
+    Direct</em> Example</font></small></small></h2>
+    <p><small><font face="Verdana"><br>
+    This <em>PowerSGL Direct</em> example illustrates Micro-Texturing of gravel.<br>
+    The camera is brought closer to the ground and gradually the pebbles appear,<br>
+    which is illustrated by the screenshots on the left.</font></small></p>
+    <p><small><font face="Verdana">Additionally to supplying mipmap levels which each have
+    different translucency<br>
+    the global translucency is altered with altitude in this example.</font></small></p>
+    <p><a href="../utexture/files/utexdrct.zip"><small><font face="Verdana"><img align="bottom" alt="ZIP" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" width="160" height="25">Download this Micro-Texturing PowerSGL Direct Example [156 KB]</font></small></a></td>
+  </tr>
+  <tr>
+    <td vAlign="center"><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/micro1.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="100"></font></small><p><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/micro2.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="100"></font></small></p>
+    <p><small><font face="Verdana"><img align="bottom" alt="*" src="../utexture/images/micro3.jpg" NATURALSIZEFLAG="3" WIDTH="100" HEIGHT="100"></font></small></td>
+    <td align="middle" vAlign="center"><h2><small><small><font face="Verdana"><em>PowerSGL</em>
+    Example</font></small></small></h2>
+    <p><small><font face="Verdana"><br>
+    The example shown here illustrates the application of Micro-Texturing<br>
+    when looking at the surface of an ocean. As the camera is moved <br>
+    closer to the surface (top image down to bottom image on the left), <br>
+    more detail such as water ripples is revealed.</font></small></p>
+    <p><a href="../utexture/files/utexsgl.zip"><small><font face="Verdana"><img align="bottom" alt="ZIP" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" width="160" height="25">Download this Micro-Texturing PowerSGL Example [454 KB]</font></small></a></td>
+  </tr>
+</tbody>
+</table>
+
+<p><small><strong><font face="Verdana">&nbsp;</font></strong></small> 
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

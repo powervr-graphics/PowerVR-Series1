@@ -1,0 +1,48 @@
+/*
+ * Version resource file for WIN32 SGL
+ */
+
+#include <winver.h>
+
+#ifndef __VERSION__
+#include "version.h"
+#endif
+
+//Default is nodebug
+#ifndef DEBUG
+#define VER_DEBUG                   0
+#else
+#define VER_DEBUG                   VS_FF_DEBUG
+#endif
+
+1 VERSIONINFO
+ FILEVERSION        VER_LIB_MAX,VER_LIB_MA,VER_LIB_MI,VER_LIB_MIN
+ PRODUCTVERSION     VER_LIB_MAX,VER_LIB_MA,VER_LIB_MI,VER_LIB_MIN
+ FILEFLAGSMASK      VS_FFI_FILEFLAGSMASK
+ FILEFLAGS          VER_DEBUG
+ FILEOS             VOS_DOS_WINDOWS16
+ FILETYPE           VFT_DLL
+ FILESUBTYPE        VFT_UNKNOWN
+
+ BEGIN
+   BLOCK "VarFileInfo"
+	BEGIN
+	 VALUE "Translation", 0x0409, 0x04E4
+	END
+
+   BLOCK "StringFileInfo"
+	BEGIN
+	 BLOCK "040904E4"
+	  BEGIN
+	   VALUE "CompanyName",     "VideoLogic plc\0", "\0"
+	   VALUE "FileDescription", "SGL language services", "\0"
+	   VALUE "FileVersion",     VER_LIB_TXT,"\0"
+	   VALUE "InternalName",    NAME_LIB_TXT, "\0"	 
+	   VALUE "LegalCopyright",  "Copyright \251 1997 VideoLogic plc", "\0"
+	   VALUE "OriginalFilename",NAME_LIB_TXT, "\0"
+	   VALUE "ProductName",     "SGL services for PowerVR", "\0"
+	   VALUE "ProductVersion",  VER_PROD_TXT,"\0"
+	   VALUE "Product Build Info",       BUILD,"\0"
+	  END
+   END
+ END

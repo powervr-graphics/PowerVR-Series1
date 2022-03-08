@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Hardware Clipping</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="bilinear.htm">Bilinear&nbsp;Filtering</a></nobr><br><nobr>Hardware&nbsp;Clipping</nobr><br><nobr><a href="n-gons.htm">Performance&nbsp;n-gons</a></nobr><br><nobr><a href="optimise.htm">Performance&nbsp;Optimisations</a></nobr><br><nobr><a href="overlap.htm">HW-SW&nbsp;Overlap</a></nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="s3.htm">S3&nbsp;Memory</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b>
+
+<p><small><font face="Verdana">Fast Hardware Clipping on PowerVR</font></small></b></p>
+<font size="2">
+
+<p><font face="Verdana">PowerVR hardware clips triangles to the screen rectangle without any
+performance cost. (There is usually a substantial penalty for doing this in Z buffer
+systems.) The clipping process takes no time at all in hardware and all the software
+driver has to do is calculate the rectangles of 32x32 pixel display tiles that contain
+each triangle. The edges of the display device do not have to be multiples of 32 pixels.
+It is unnecessary to subdivide clipped triangles to keep them onscreen which should help
+performance considerably, though Z clipping is still required to keep InvW positive.</font></p>
+
+<p><font face="Verdana">Without any performance loss it is possible to restrict the
+rectangle of tiles (also known as regions) that triangles are put into for viewport
+effects such as a rear-view mirror. This can be done within the same hardware render as
+triangles that are sent to other areas of the screen. For this reason the InvW values for
+triangles in the viewport should be closer than those of the rest of the screen to ensure
+the viewport triangles are on top.</font></p>
+
+<p><font face="Verdana">sgltri_startofframe sets the SGLCONTEXT region variables to the
+correct values for the whole device. These variables are FirstXRegion, LastXRegion,
+FirstYRegion, LastYRegion, invRegX and invRegY.</font></p>
+
+<p><font face="Verdana">invRegX and invRegY are (1 / X tile size) and (1 / Y tile size)
+respectively. The usual values are 1/32 for both, though future drivers and future
+hardware may use different tile sizes for performance reasons so these values should
+always be checked. The maximum region size will be 32x32 (the usual size for the PCX1 and
+PCX2 chips), and future hardware may reduce this to 32x8.</font></p>
+
+<p><font face="Verdana">To clip a set of triangles to a certain rectangle of tiles, set the
+FirstXRegion etc. variables to the required rectangle (0,0 is top left, and the last
+region should always be greater than or equal to the first region).</font></p>
+
+<p><font face="Verdana">To go back to putting triangles into the whole device, and always
+before calling sgltri_render, be sure to return the FirstXRegion etc. variables to their
+original values set by the sgltri_startofframe call. Otherwise, only the latest defined
+viewport area will be sent to the hardware.</font></font></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small>
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

@@ -1,0 +1,35 @@
+#-----------------------------------------------------------------------
+# Dos Targets for NMAKE Compatible makefile for PC Builds
+#
+# Created 14-Apr-1997 by Graham Connor
+#
+# $Log: dostgt.dat,v $
+# Revision 1.5  1997/05/28  14:14:15  mlj
+# Added the Vesa Library to the linking.
+#
+# Revision 1.4  1997/04/16  13:52:05  jop
+# changed LGLAGS to WLIBFLAGS
+#
+# Revision 1.3  1997/04/16  11:02:46  gdc
+# using object list variable now
+#
+# Revision 1.2  1997/04/16  10:55:15  gdc
+# use varaible LFLAGS for WLIB control
+#
+# Revision 1.1  1997/04/14  17:37:29  gdc
+# Initial revision
+#
+#
+#
+#-----------------------------------------------------------------------
+
+# Create library
+
+$(BIN)\$(LIBNAME).lib: $(SGL_OBJ)
+	@echo Building library $(BIN)\$(LIBNAME).lib ...
+  $(WLIB) $(WLIBFLAGS) $(BIN)\$(LIBNAME).lib +$(BIN)\pmode.lib +$(BIN)\uvbelib.lib @<<
++$(SGL_OBJ: =^
++)
+<<
+
+

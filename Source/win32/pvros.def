@@ -1,0 +1,10 @@
+SEGMENTS
+
+	.text     SHARED READ
+	.rdata    SHARED READ WRITE
+	.edata    SHARED READ WRITE
+	.data     SHARED READ WRITE
+	.bss      SHARED READ WRITE
+	.idata    SHARED READ WRITE
+	.onetime  SHARED READ WRITE
+	.data1    SHARED READ WRITE

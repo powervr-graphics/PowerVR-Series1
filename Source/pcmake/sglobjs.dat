@@ -1,0 +1,162 @@
+SGL_OBJ= \
+ $(TMP)\dlconvex.obj\
+ $(TMP)\dldelete.obj\
+ $(TMP)\dlcamera.obj\
+ $(TMP)\dllists.obj\
+ $(TMP)\dlglobal.obj\
+ $(TMP)\dllod.obj\
+ $(TMP)\dlmater.obj\
+ $(TMP)\dlmesh.obj\
+ $(TMP)\dlpoint.obj\
+ $(TMP)\dltransf.obj\
+ $(TMP)\rnlights.obj\
+ $(TMP)\rnmater.obj\
+ $(TMP)\rnrender.obj\
+ $(TMP)\rnstate.obj\
+ $(TMP)\rntransf.obj\
+ $(TMP)\rntrav.obj\
+ $(TMP)\rnlod.obj\
+ $(TMP)\rnpoint.obj\
+ $(TMP)\rnqualit.obj\
+ $(TMP)\adjacenc.obj\
+ $(TMP)\rnconvex.obj\
+ $(TMP)\dlobject.obj\
+ $(TMP)\rncamera.obj\
+ $(TMP)\rnconvpr.obj\
+ $(TMP)\rnfshade.obj\
+ $(TMP)\array.obj\
+ $(TMP)\rnreject.obj\
+ $(TMP)\rnmesh.obj\
+ $(TMP)\dllights.obj\
+ $(TMP)\rnshadow.obj\
+ $(TMP)\rnshadrj.obj\
+ $(TMP)\dlnewtrn.obj\
+ $(TMP)\dlqualit.obj\
+ $(TMP)\rntex.obj\
+ $(TMP)\rnshade.obj\
+ $(TMP)\sgl_init.obj\
+ $(TMP)\error.obj\
+ $(TMP)\rnglobal.obj\
+ $(TMP)\txmops.obj\
+ $(TMP)\ldbmp.obj\
+ $(TMP)\nm_imp.obj\
+ $(TMP)\sgl_math.obj\
+ $(TMP)\singmath.obj\
+ $(TMP)\dvdevice.obj\
+ $(TMP)\metrics.obj\
+ $(TMP)\parmbuff.obj\
+ $(TMP)\list.obj\
+ $(TMP)\dregion.obj\
+ $(TMP)\pkisp.obj\
+ $(TMP)\pktsp.obj\
+ $(TMP)\debug.obj\
+ $(TMP)\dsprite.obj\
+ $(TMP)\dlines.obj\
+ $(TMP)\dpoint.obj\
+ $(TMP)\dtex.obj\
+ $(TMP)\dtexnp.obj\
+ $(TMP)\disp.obj\
+ $(TMP)\dtsp.obj\
+ $(TMP)\dshade.obj\
+ $(TMP)\dtri.obj\
+ $(TMP)\sgltri.obj\
+ $(TMP)\sgllite.obj\
+sgllite.obj
+
+
+DOS32_OBJ= \
+ $(TMP)\pci.obj\
+ $(TMP)\hwdevice.obj\
+ $(TMP)\brdcfg.obj\
+ $(TMP)\vds.obj\
+ $(TMP)\vesa.obj\
+ $(TMP)\pvrosapi.obj\
+ $(TMP)\irq.obj\
+ $(TMP)\vxd.obj\
+ $(TMP)\texapi.obj\
+ $(TMP)\tmalloc.obj\
+ $(TMP)\profile.obj\
+ $(TMP)\callback.obj\
+ $(TMP)\debug.obj\
+ $(TMP)\fast.obj\
+ $(TMP)\rizla.obj\
+ $(TMP)\isr.obj\
+ $(TMP)\dispml.obj\
+ $(TMP)\dtexml.obj\
+ $(TMP)\dtriml.obj\
+dtriml.obj
+
+
+WIN32_OBJ= \
+ $(TMP)\w32dll.obj\
+ $(TMP)\hwdevice.obj\
+ $(TMP)\sglwin.obj\
+ $(TMP)\pvrosif.obj\
+ $(TMP)\sglheap.obj\
+ $(TMP)\fast.obj\
+ $(TMP)\dispml.obj\
+ $(TMP)\dtexml.obj\
+ $(TMP)\dtriml.obj\
+ $(TMP)\dtexnpml.obj\
+ $(TMP)\sgl.res\
+sgl.res
+
+
+PCX_OBJ= \
+ $(TMP)\hwregs.obj\
+ $(TMP)\texas.obj\
+texas.obj
+
+
+PVROS_OBJ= \
+ $(TMP)\system.obj\
+ $(TMP)\display.obj\
+ $(TMP)\brdcfg.obj\
+ $(TMP)\brdsetup.obj\
+ $(TMP)\texif.obj\
+ $(TMP)\heap.obj\
+ $(TMP)\texapi.obj\
+ $(TMP)\tmalloc.obj\
+ $(TMP)\profile.obj\
+ $(TMP)\callback.obj\
+ $(TMP)\debug.obj\
+ $(TMP)\texapiml.obj\
+ $(TMP)\pci.obj\
+ $(TMP)\fast.obj\
+ $(TMP)\pvros.res\
+pvros.res
+
+
+PVRD_OBJ= \
+ $(TMP)\pvrddll.obj\
+ $(TMP)\pvrosif.obj\
+ $(TMP)\d3dheap.obj\
+ $(TMP)\d3dlines.obj\
+ $(TMP)\d3dpoint.obj\
+ $(TMP)\dtex.obj\
+ $(TMP)\dtexnp.obj\
+ $(TMP)\disp.obj\
+ $(TMP)\d3dtsort.obj\
+ $(TMP)\d3disp.obj\
+ $(TMP)\dtsp.obj\
+ $(TMP)\d3dreg.obj\
+ $(TMP)\d3dtri.obj\
+ $(TMP)\metrics.obj\
+ $(TMP)\parmbuff.obj\
+ $(TMP)\dshade.obj\
+ $(TMP)\pvrd.obj\
+ $(TMP)\pkisp.obj\
+ $(TMP)\pktsp.obj\
+ $(TMP)\debug.obj\
+ $(TMP)\sgl_math.obj\
+ $(TMP)\sgltri.obj\
+ $(TMP)\singmath.obj\
+ $(TMP)\fast.obj\
+ $(TMP)\dispml.obj\
+ $(TMP)\dtexml.obj\
+ $(TMP)\d3dtriml.obj\
+ $(TMP)\dtexnpml.obj\
+ $(TMP)\pvrd.res\
+pvrd.res
+
+

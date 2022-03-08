@@ -1,0 +1,3 @@
+SEGMENTS
+
+	.text READ SHARED

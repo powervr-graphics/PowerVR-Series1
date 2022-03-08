@@ -1,0 +1,175 @@
+#-----------------------------------------------------------------------
+# Inference Rules for NMAKE Compatible makefile for PC Builds
+#
+# Created 14-Apr-1997 by Graham Connor
+#
+# $Log: infrules.dat,v $
+# Revision 1.13  1997/06/12  08:47:57  gdc
+# going back to proton
+#
+# Revision 1.12  1997/06/09  09:58:18  gdc
+# remved ^M's
+#
+# Revision 1.11  1997/06/02  17:37:33  jop
+# Moicrosoft. build
+#
+# Revision 1.10  1997/05/13  16:06:41  jop
+# Corrected vxd inference rule
+#
+# Revision 1.9  1997/04/21  11:45:36  gdc
+# chnaged so thin layer builds with MSVC instead of proton
+#
+# Revision 1.8  1997/04/18  10:10:54  jop
+# Added preprocessor output (.p) rule for files in sgl dir
+#
+# Revision 1.7  1997/04/16  14:13:55  gdc
+# added a OS conditional infrule
+#
+# Revision 1.6  1997/04/16  10:31:03  gdc
+# vxd inf rules now dont have separate version flags
+#
+# Revision 1.5  1997/04/15  18:38:38  gdc
+# neatened up rules a bit more
+#
+# Revision 1.4  1997/04/15  18:07:28  gdc
+# fixed sglthin directories
+#
+# Revision 1.3  1997/04/14  18:17:50  gdc
+# added different varaible for local hardware source dir
+#
+# Revision 1.2  1997/04/14  17:27:00  gdc
+# added VXD inference rules
+#
+# Revision 1.1  1997/04/14  17:13:48  gdc
+# Initial revision
+#
+#
+#
+#-----------------------------------------------------------------------
+
+{$(SRC)\.}.c{$(TMPSRC)}.c:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\.}.h{$(TMPSRC)}.h:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(OS)\.}.h{$(TMPSRC)\$(OS)\}.h:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(OS)\.}.c{$(TMPSRC)\$(OS)\}.c:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(OS)\.}.rc{$(TMPSRC)\$(OS)\}.rc:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(OS)\.}.asm{$(TMPSRC)\$(OS)\}.asm:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(HW_SRC)\.}.c{$(TMPSRC)\$(HW_SRC)\}.c:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(SRC)\$(HW_SRC)\.}.h{$(TMPSRC)\$(HW_SRC)\}.h:
+	echo updating $(@)
+	copy $< $(@) 
+	touch $(@)
+
+{$(TMPSRC)\.}.c{$(TMP)}.d:
+	@echo Generating dependancy file $(@)
+	$(DEP_CC) -QM $(DEP_FLAGS) $(INC_CC) $< > $(@)
+
+{$(TMPSRC)\$(HW_SRC)}.c{$(TMP)}.d:
+	@echo Generating dependancy file $(@)
+	$(DEP_CC) -QM $(DEP_FLAGS) $(INC_OS) $< > $(@)
+
+{$(TMPSRC)\$(OS)}.c{$(TMP)}.d:
+	@echo Generating dependancy file $(@)
+	$(DEP_CC) -QM $(DEP_FLAGS) $(INC_OS) $< > $(@)
+
+{$(TMPSRC)\.}.c{$(TMP)}.asm:
+	@echo Outputting assembly $(@)
+	$(CC) -S -Fa$(@) $(CFLAGS) $(INC_CC) $<
+
+{$(TMPSRC)\$(HW_SRC)}.c{$(TMP)}.asm:
+	@echo Outputting assembly $(@)
+	$(OS_CC) -S -Fa$(@) $(OS_CFLAGS) $(INC_OS) $<
+
+{$(TMPSRC)\$(OS)}.c{$(TMP)}.asm:
+	@echo Outputting assembly $(@)
+	$(OS_CC) -S -Fa$(@) $(OS_CFLAGS) $(INC_OS) $<
+
+{$(TMPSRC)\.}.c{$(TMP)}.p:
+	@echo Outputting preprocessed $(@)
+	$(CC) -E $(CFLAGS) $(INC_CC) $< > $(@)
+
+
+!if "$(OS)"=="WIN32"
+#!if exist($(PROTON)\bin\icl.exe
+
+#!message Using proton to generate asm
+
+#{$(TMPSRC)\.}.c{$(TMP)}.obj:
+#	$(CC) -S -Fa$(*).asm $(INC_CC) $(CFLAGS) $<
+#	$(ASM) -Fo$(@) $(ASMFLAGS) $(*).asm
+
+{$(TMPSRC)\.}.c{$(TMP)}.obj:
+	$(CC) -c -Fo$(@) $(CFLAGS) $(INC_CC) $<
+
+#!else
+
+#{$(TMPSRC)\.}.c{$(TMP)}.obj:
+#	$(OS_CC) -Fo$(@) $(OS_CFLAGS) $(INC_CC) $<
+
+#!endif
+
+!elseif "$(OS)"=="DOS32"
+
+{$(TMPSRC)\.}.c{$(TMP)}.obj:
+	$(CC) $(INC_CC) -S -Fa$(*).asm $(CFLAGS) $<
+	$(ASM) $(ASMFLAGS) -Fo$(@) $(*).asm
+
+!endif
+
+{$(TMPSRC)\$(HW_SRC)}.c{$(TMP)}.obj:
+	$(OS_CC) -Fo$(@) $(OS_CFLAGS) $(INC_OS) $<
+
+{$(TMPSRC)\$(OS)}.c{$(TMP)}.obj:
+	$(OS_CC) -Fo$(@) $(OS_CFLAGS) $(INC_OS) $<
+
+{$(SRC)\..\sglthin}.c{$(WORKDIR)\sglthin\$(BUILD).tmp}.obj:
+	$(OS_CC) -Fo$(@) $(OS_CFLAGS) -I. $(INC_CC) $<
+
+{$(TMPSRC)\$(OS)}.asm{$(TMP)}.obj:
+	@echo Assembling $(@)
+	$(ASM) $(ASMFLAGS) -Fo$(@) $<
+
+{$(TMPSRC)\$(OS)}.rc{$(TMP)}.res:
+	@echo Compiling resource $(@)
+	$(RC) -i$(SRC)\pcmake -dNAME_LIB_TXT=\"$(LIBNAME).DLL\" -i$(SRC)\$(OS) $(INC_OS) $(RCFLAGS) -r -fo $(@) $<
+
+{$(TMPSRC)\$(OS)}.rc{$(WORKDIR)\sglthin\$(BUILD).tmp}.res:
+	@echo Compiling resource $(@)
+	$(RC) $(INC_OS) -dNAME_LIB_TXT=\"SGL.DLL\" $(RCFLAGS) -r -fo $(@) $<
+
+{$(SRC)\..\vsgl}.asm{$(TMP)}.obj:
+	$(ASM) $(VMLFLAGS) $(VER_LIB) -Fo$(@) $<
+
+{$(SRC)\..\vsgl}.c{$(TMP)}.obj:
+	set TMP=$(TMP)
+	$(OS_CC) -c -Fo$(@) $(VXD_CFLAGS) $(VXD_INCLUDES) $(VER_LIB) $<
+
+
+

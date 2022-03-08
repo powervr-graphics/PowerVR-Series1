@@ -1,0 +1,1 @@
+Some of the old packaged examples have a notice in their copywrite that they may not be shared edited etc unless you have recieved expressed written permission. You may consider this said permission 

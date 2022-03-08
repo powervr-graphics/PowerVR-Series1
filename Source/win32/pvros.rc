@@ -1,0 +1,107 @@
+//Microsoft Visual C++ generated resource script.
+//
+#include "sglres.h"
+#include "verrc.rc"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+DEBUGWINDOW DIALOG FIXED IMPURE  172, 148, 302, 237
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "SGL Debug control panel"
+FONT 8, "Helv"
+BEGIN
+    GROUPBOX        " Group settings ",100,5,4,293,140
+    LISTBOX         IDC_GROUPLIST,10,18,238,121,LBS_HASSTRINGS | 
+                    LBS_USETABSTOPS | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Fatal",IDC_LEVELFATAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,253,17,40,10
+    CONTROL         "Error",IDC_LEVELERROR,"Button",BS_AUTORADIOBUTTON,253,
+                    27,40,10
+    CONTROL         "Warning",IDC_LEVELWARNING,"Button",BS_AUTORADIOBUTTON,
+                    253,38,40,10
+    CONTROL         "Message",IDC_LEVELMESSAGE,"Button",BS_AUTORADIOBUTTON,
+                    253,49,40,10
+    CONTROL         "Verbose",IDC_LEVELVERBOSE,"Button",BS_AUTORADIOBUTTON,
+                    253,59,40,11
+    CONTROL         "Save ini",IDC_SAVEINI,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,253,73,39,9
+    PUSHBUTTON      "All Groups",IDC_ALLGROUPS,252,86,42,12
+    PUSHBUTTON      "Pause ...",IDC_PAUSE,252,99,42,12
+    EDITTEXT        IDC_DEBUGOUTPUT,5,150,293,82,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | WS_VSCROLL
+    PUSHBUTTON      "Preview ...",IDC_PREVIEW,252,112,42,11
+    PUSHBUTTON      "Debugger",IDC_DEBUGGER,252,128,42,11
+END
+
+IMAGEWINDOW DIALOG FIXED IMPURE  13, 20, 443, 351
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "SGL Simulator"
+FONT 8, "Helv"
+BEGIN
+END
+
+TESTWINDOW DIALOG FIXED IMPURE  20, 20, 136, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Click here!"
+FONT 8, "Helv"
+BEGIN
+    PUSHBUTTON      "Render",IDC_RENDER,93,78,39,12
+END
+ 
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "sglres.h\0"
+    "verrc.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

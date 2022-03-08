@@ -1,0 +1,26 @@
+SEGMENTS
+	.text READ SHARED
+
+EXPORTS
+	DllMain
+	sgl_get_errors
+	sgl_create_screen_device
+	sgl_get_device
+	sgl_delete_device
+	ConvertBMPtoSGL
+	LoadBMPTexture
+	FreeBMPTexture
+	FreeAllBMPTextures
+	sgl_get_win_versions
+	sgl_get_versions
+	sgl_use_ddraw_mode
+	sgl_use_address_mode
+	sgl_use_eor_callback
+    	sgltri_startofframe
+    	sgltri_triangles
+    	sgltri_quads
+    	sgltri_shadow
+    	sgltri_render
+    	sgltri_rerender
+    	sgltri_renderstrip
+    	sgltri_isrendercomplete

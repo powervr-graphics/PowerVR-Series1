@@ -1,0 +1,111 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>S3 Memory</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="bilinear.htm">Bilinear&nbsp;Filtering</a></nobr><br><nobr><a href="clipping.htm">Hardware&nbsp;Clipping</a></nobr><br><nobr><a href="n-gons.htm">Performance&nbsp;n-gons</a></nobr><br><nobr><a href="optimise.htm">Performance&nbsp;Optimisations</a></nobr><br><nobr><a href="overlap.htm">HW-SW&nbsp;Overlap</a></nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr>S3&nbsp;Memory</nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b>
+
+<p><small><font face="Verdana">S3 868/968 based cards - Memory Allocation Problem</font></small></b></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<h3><small><font face="Verdana">Summary</font></small></h3>
+
+<p><small><font face="Verdana"><br>
+Systems with an AWARD system BIOS and a graphics controller based on the S3 868 or S3 968
+chip become unstable when accessing other PCI devices, like PowerVR.</font></small></p>
+
+<h3><small><font face="Verdana">Problem</font></small></h3>
+
+<p><small><font face="Verdana"><br>
+During PCI initialization, graphics cards based on the S3 868 and 968 chips will request
+only 32 MBytes of virtual memory rather than the 64 MBytes they actually require. AWARD
+BIOS will allocate the requested 32 Mbytes to the graphics adapter and locate the add-in
+card&#146;s memory range just above that, therefore within the memory range used (but not
+declared) by the S3 graphics card.<br>
+Other BIOSes like MR-BIOS have a &#145;workaround&#146; built in which will ignore the
+faulty memory request issued by those S3 adapters and allocate 64Mbytes by default,
+therefore not exhibiting the problem.</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<h3><small><font face="Verdana">Result</font></small></h3>
+
+<p><small><font face="Verdana"><br>
+Attempts to use the PowerVR PCI device will fail, typically causing the system to hang or
+reset.<br>
+The problem is due to the illegal memory range overlap caused by the wrong memory size
+request of the S3 adapter.</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<h3><small><font face="Verdana">Solution</font></small></h3>
+
+<p><small><font face="Verdana"><br>
+Manually changing the memory allocation for the add-in card to a range outside the
+64Mbytes used by the graphics card will solve the problem. The memory reallocation can be
+done manually within the Windows 95 Device Manager as follows:</font></small></p>
+
+<p><small><font face="Verdana">1) Go to the Control Panel, run &#145;System&#146; and select
+the Device Manager<br>
+2) Locate the PowerVR PCI device in Sound, Video and Game Controllers<br>
+3) Select &#145;Properties&#146; and then &#145;Resources&#146;<br>
+4) Remove check &quot;Use Automatic Settings&quot; to allow manual setup<br>
+5) Choose Memory Range I from the list<br>
+6) Click on &quot;Change Setting&quot; and alter the range to FFBE0000 - FFBEFFFF <br>
+7) Choose Memory Range II from the resource list<br>
+8) Click on &quot;Change Setting&quot; and alter the range to FF400000 - FF7FFFFF<br>
+9) Confirm everything by clicking OK<br>
+10) Restart your PC</font></small></p>
+
+<p><small><font face="Verdana">This assumes that there is no memory allocation conflict due
+to devices present at FF400000-FFBEFFFF. One should cross-check for conflicts by checking
+the allocated memory ranges for other PCI devices by double-clicking the computer icon in
+the Device Manager and choosing &quot;Memory&quot;.</font></small></p>
+
+<p><small><font face="Verdana">This will allow you to run applications successfully for your
+add-in card and it is normally not necessary to reconfigure the memory settings again
+since Windows95 will remember the new settings every time it starts up and reallocate the
+memory automatically.</font></small></p>
+
+<p align="justify"><small><font face="Verdana" size="1"><br>
+</font>
+</small><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

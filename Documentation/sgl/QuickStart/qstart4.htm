@@ -1,0 +1,125 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>QuickStart4</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="qstart1.htm">QuickStart1</a></nobr><br><nobr><a href="qstart2.htm">QuickStart2</a></nobr><br><nobr><a href="qstart3.htm">QuickStart3</a></nobr><br><nobr>QuickStart4</nobr><br><nobr><a href="qstart5.htm">QuickStart5</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p align="left">&nbsp;</p>
+
+<h3 align="left"><small><font face="Verdana">PowerVR SGL Direct Quickstart Tutorial - Step 4</font></small></h3>
+
+<p align="left">&nbsp;</p>
+
+<table border="1" cellPadding="5" cellSpacing="2" width="100%">
+<tbody>
+  <tr>
+    <td><small><font face="Verdana"><img align="bottom" src="../QuickStart/i/triangex4.gif" NATURALSIZEFLAG="3" WIDTH="160" HEIGHT="120"></font></small></td>
+    <td><small><font face="Verdana">Some simple animation is easily done by changing the vertex
+    coordinates.</font></small></td>
+  </tr>
+</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<table border="1" cellPadding="2" cellSpacing="2" width="100%">
+<tbody>
+  <tr>
+    <td width="80%"><pre><small>#include &quot;sgl.h&quot;
+#include &quot;math.h&quot;
+#define RGB(r, g, b) ((sgl_uint32) (((r) &lt;&lt; 16) | ((g) &lt;&lt; 8) | (b)))
+
+SGLCONTEXT     SGLContext;
+SGLVERTEX      Vertices[] =	{
+/*                 x      y     z  (1/W)     col       spec.col (u/W) (v/W) */
+	        {  0.0f,240.0f,0.0f,0.1f,RGB(255,0,0),RGB(0,0,0),0.0f,0.0f},
+	    	{320.0f,479.0f,0.0f,0.8f,RGB(255,0,0),RGB(0,0,0),0.0f,0.0f},
+		{639.0f,240.0f,0.0f,0.1f,RGB(255,0,0),RGB(0,0,0),0.0f,0.0f},
+		{320.0f,  0.0f,0.0f,0.8f,RGB(0,255,0),RGB(0,0,0),0.0f,0.0f}
+			        };
+int	       TriFaceData[][3] = {{0,1,2},{3,0,2}};
+int            Device,frame,run;
+
+void main ()
+{
+	Device = sgl_create_screen_device (0,640,480, sgl_device_16bit, TRUE);
+	if (Device &gt;= 0)
+	{
+	    SGLContext.bFogOn=TRUE;
+	    SGLContext.fFogR=0.5f;
+	    SGLContext.fFogG=0.5f;
+	    SGLContext.fFogB=1.0f;
+	    SGLContext.u32FogDensity=16;</small></pre>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><pre><small>	    for(run=1; run&lt;5 ; run++)
+	    {
+	      for(frame=1; frame&lt;128; frame++)
+	      {
+		Vertices[0].fX=(64-abs(frame-64))*10.0f-5.0f;
+		Vertices[2].fX=645.0f-(64-abs(frame-64))*10.0f;
+		sgltri_startofframe (&amp;SGLContext);
+		sgltri_triangles    (&amp;SGLContext, 2, TriFaceData, Vertices);
+		sgltri_render       (&amp;SGLContext);
+	      }
+           }</small></pre>
+    </td>
+    <td><font face="Arial"><small>Vertices 0 and 2 are on the left and right border of the
+    screen, respectively. In this loop, we are swapping their on-screen X coordinates
+    gradually and repeat this 10 times</small></font></td>
+  </tr>
+  <tr>
+    <td><pre><small>	    sgl_delete_device(Device);
+	}
+}</small></pre>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+<p align="left"><small><font face="Verdana"><br>
+You may <a href="../QuickStart/f/triangex4.c">view this source code</a>.</font></small></p>
+
+<p align="left"><small><font face="Verdana">The next step will texture the triangles<br>
+<a href="qstart5.htm">Click here to see how it's done ...</a></font></small></p>
+
+<p align="left"><small><font face="Verdana">Go to PowerSGL Direct QuickStart Page <a href="qstart1.htm">1 </a>- <a href="qstart2.htm">2 </a>- <a href="qstart3.htm">3 </a>- <a href="qstart5.htm">5</a></font></small></p>
+
+<p align="left"><small><font face="Verdana">&nbsp;</font></small><!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

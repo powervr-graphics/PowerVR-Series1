@@ -1,0 +1,91 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>AppHints</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="../index.htm">Up</a></nobr><br><nobr><a href="../Shell/index.htm">Shell</a></nobr><br><nobr><a href="../uTexture/index.htm">Micro&nbsp;Texturing</a></nobr><br><nobr><a href="../Flame/index.htm">Dynamic&nbsp;Lighting</a></nobr><br><nobr><a href="../AddBlend/index.htm">Additive&nbsp;Blending</a></nobr><br><nobr><a href="../ChromaKey/index.htm">Chroma&nbsp;Key</a></nobr><br><nobr><a href="../IsPVRsh/index.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="../printf3D/index.htm">Ascii&nbsp;Text&nbsp;in&nbsp;3D</a></nobr><br><nobr><a href="../TableFog/index.htm">Table&nbsp;Fog</a></nobr><br><nobr>AppHints</nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><strong><font face="Verdana">Application Specific Settings (Apphints)</font></strong></p>
+
+<p align="left"><small><font face="Verdana">The PowerVR control panel (accessible through
+Display Properties) allows the end-user to set/modify PowerVR settings on a per
+application basis. These PowerVR AppHints may help to enhance compatibility and/or
+performance for a given 3D application.</font></small></p>
+
+<p align="left"><small><font face="Verdana">One example includes the translucency sorting in
+the PowerVR driver. By default this is enabled, but if the application sends pre-sorted
+translucent polygons to PowerVR it is possible to save time by disabling the translucency
+sorting in the drivers. This can be done in the PowerVR control panel which will
+effectively create an AppHint in the registry with the following entries in</font></small><tt></p>
+
+<p><font face="Verdana"><small>[HKEY_LOCAL_MACHINE\SOFTWARE\PowerVR\PCX1&amp;2\App hints\<em>application.exe</em>]</tt>:
+</small></font></tt><font face="Verdana"><small>[HKEY_LOCAL_MACHINE\SOFTWARE\PowerVR\PCX1&amp;2\App hints\<em>application.exe</em>]</tt>:
+</small></font></p>
+
+<blockquote>
+  <blockquote>
+    <tt><p><font face="Verdana"><small>SglTransSort = 1</tt><br>
+    <tt>DisableNewPassPerTri = 1</tt><br>
+    </small></font></tt><font face="Verdana"><small>SglTransSort = 1</tt><br>
+    <tt>DisableNewPassPerTri = 1</tt><br>
+    </small></font></p>
+  </blockquote>
+</blockquote>
+<div align="center"><center>
+
+<table border="1">
+<tbody>
+  <tr>
+    <td><small><font face="Verdana"><img align="bottom" alt="*" src="../apphint/images/AppHint.jpg" WIDTH="250" HEIGHT="210"></font></small></td>
+    <td align="middle" vAlign="center"><h2><strong><small><small><small><em><font face="Verdana">PVRCreateAppHint</font></em></small></small></small></strong></h2>
+    <p><small><font face="Verdana">Includes <tt>.c</tt> and <tt>.h</tt> files containing the
+    function PVRCreateAppHint. This function can be used as</font></small></p>
+    <p><small><tt><font face="Verdana">PVRCreateAppHint(<em>Exe name</em>,<em>String name</em>,<em>String
+    Value</em>);</font></tt> </small></p>
+    <p><small><font face="Verdana">For the above example this would look like<br>
+    </font></small></p>
+    <pre><small><font face="Verdana">PVRCreateAppHint(&quot;mygame.exe&quot;, &quot;SglTransSort&quot;, &quot;1&quot;);
+PVRCreateAppHint(&quot;mygame.exe&quot;, &quot;DisableNewPassPerTri&quot;, &quot;1&quot;);</font></small></pre>
+    <p><small><a href="../apphint/files/apphint.zip"><font face="Verdana"><img align="bottom" alt="ZIP" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" WIDTH="25" HEIGHT="25">
+    Click here to download the PVRCreateAppHint files [3 KB]</font></a> </small></p>
+    <p><small><font face="Verdana">This also includes an example application file <tt>Apptest.c</tt>
+    using this function and the corresponding <tt>Apphint.reg</tt> file.</font></small></td>
+  </tr>
+</tbody>
+</table>
+</center></div>&nbsp;<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

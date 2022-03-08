@@ -1,0 +1,349 @@
+#-----------------------------------------------------------------------
+# Windows targets for NMAKE Compatible makefile for PC Builds
+#
+# Created 14-Apr-1997 by Graham Connor
+#
+# Copyright		: 1995-2022 Imagination Technologies (c)
+# License		: MIT
+#
+# $Log: wintgt.dat,v $
+# Revision 1.36  1997/11/19  16:00:30  erf
+# Added advapi32.lib to get registry stuff working for pvrmidX.dll.
+# This is used to write LastD3DApp in the LastApp registry key.
+#
+# Revision 1.35  1997/11/17  12:21:35  gdc
+# added registry muck to sgl thin link line
+#
+# Revision 1.34  1997/11/07  17:29:32  gdc
+# added stuff to build pvrsmx.dll
+#
+# Revision 1.33  1997/11/07  16:02:14  gdc
+# removed ^M's
+#
+# Revision 1.32  1997/10/20  10:14:32  gdc
+# incorporated build info so we know if its a Debug, Developer or Release build
+#
+# Revision 1.31  1997/08/12  11:16:29  gdc
+# tried to improve dependancy of sglthin
+#
+# Revision 1.30  1997/07/14  13:45:09  gdc
+# added debug.obj to new thin so it can emit proper debug stuff
+#
+# Revision 1.29  1997/07/03  13:32:50  gdc
+# added version.lib to sglmid tgt to link version info stuff in sglwin.c
+#
+# Revision 1.28  1997/06/02  03:26:39  jop
+# Tarted around dfor DX5 build
+#
+# Revision 1.27  1997/05/21  13:16:56  erf
+# Added version info to PVRMID.DLL and PVROS.DLL.
+#
+# Revision 1.26  1997/05/20  09:17:53  jop
+# Added extra targets for vxd and removed optimisation
+#
+# Revision 1.25  1997/05/14  12:55:57  jop
+# Added dependancies for vxd
+#
+# Revision 1.24  1997/05/13  17:48:56  mjg
+# Now uses single threaded 'jimc' libraries for everything but PVROS.
+#
+# Revision 1.23  1997/05/13  16:06:56  jop
+# Added network source directories to vxd include path
+#
+# Revision 1.22  1997/05/08  13:23:41  gdc
+# chnaged pvrd entry poit so it links
+#
+# Revision 1.21  1997/05/08  13:12:32  jop
+# Fixed PVRD build
+#
+# Revision 1.20  1997/05/08  11:28:45  erf
+# Now builds PVRDirect as seperate libraries.
+#
+# Revision 1.19  1997/05/06  16:08:34  jop
+# Moved load base
+# /
+#
+# Revision 1.18  1997/05/01  08:35:31  jop
+# made pvros.dll shared
+#
+# Revision 1.17  1997/04/30  20:29:44  erf
+# things.
+#
+# Revision 1.16  1997/04/29  15:23:14  erf
+# Removed pvros.lib from sgl.lib and sglmidX.lib.
+#
+# Revision 1.15  1997/04/28  00:17:55  mjg
+# Removed pvrosif.obj and  changed the sgl.dll linking.
+#
+# Revision 1.14  1997/04/27  22:43:22  jop
+# Went back to unsharable pvros.dll
+#
+# Revision 1.13  1997/04/26  18:48:31  erf
+# Something, I'm sure..
+#
+# Revision 1.12  1997/04/26  13:12:47  erf
+# Made PVROS.DLL shared
+#
+# Revision 1.11  1997/04/25  16:32:49  gdc
+# added stuff for a PVRMID?.DLL target
+#
+# Revision 1.10  1997/04/24  20:06:44  gdc
+# chnaged an incorrect dependancy
+#
+# Revision 1.9  1997/04/24  17:22:47  gdc
+# added depadancy on sgl.dll for pvros.lib
+#
+# Revision 1.8  1997/04/22  16:27:31  gdc
+# made sglthin even thinner and linked it with pvros.lib
+#
+# Revision 1.7  1997/04/21  22:32:22  gdc
+# added stuff for a pvros.dll target
+#
+# Revision 1.6  1997/04/21  11:44:14  gdc
+# chnaged thin objs to match new style and added dependancies to
+# ordinal.h in places
+#
+# Revision 1.5  1997/04/17  15:56:29  gdc
+# stopped generation of pre-compiled headers for vsgl c-files
+#
+# Revision 1.4  1997/04/17  11:52:50  gdc
+# chnaged rules for rc files slightly (..again cause the 16bit needs improvement)
+#
+# Revision 1.3  1997/04/16  10:32:55  gdc
+# added a version.h dependancy to some targets and removed some echos
+#
+# Revision 1.2  1997/04/15  18:48:00  gdc
+# rules now outdate on version.rc file
+#
+# Revision 1.1  1997/04/14  17:36:47  gdc
+# Initial revision
+#
+#
+#
+#-----------------------------------------------------------------------
+
+# RC Dependencies
+#SGLMID.DLL
+$(TMP)\sgl.res:	    	$(SRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+
+#PVRMID.DLL
+$(TMP)\pvrd.res:	$(SRC)\win32\pvrd.rc $(SRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+	@echo Compiling resource $(@)
+	$(RC) -dNAME_LIB_TXT=\"$(PVRDNAME).DLL\"  $(INC_OS) $(RCFLAGS) -r -fo $(TMP)\pvrd.res $(SRC)\win32\pvrd.rc
+
+#PVROS.DLL
+$(TMP)\pvros.res:	$(SRC)\win32\pvros.rc $(SRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+	@echo Compiling resource $(@)
+	$(RC) -dNAME_LIB_TXT=\"$(PVROSNAME).DLL\" $(INC_OS) $(RCFLAGS) -r -fo $(TMP)\pvros.res $(SRC)\win32\pvros.rc 
+
+#PVRSMX.DLL
+$(TMP)\pvrsmx.res:	$(SRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+	@echo Compiling resource $(@)
+	$(RC) -dNAME_LIB_TXT=\"PVRSMX.DLL\" $(INC_OS) $(RCFLAGS) -r -fo $(TMP)\pvrsmx.res $(SRC)\win32\verrc.rc 
+
+#SGL.DLL
+$(WORKDIR)\sglthin\$(BUILD).tmp\verrc.res:	$(SRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+
+
+##########################################################
+# Link
+##########################################################
+
+# Building the export file for SGL API funcs
+
+$(TMPSRC)\sglmid.def:$(SRC)\win32\sglmid.def
+	@echo Making sglmid.def
+	@copy $(SRC)\win32\sglmid.def $(TMPSRC)\sglmid.def
+	@touch $(TMPSRC)\sglmid.def
+
+$(TMPSRC)\pvros.def:$(SRC)\win32\pvros.def
+	@echo Making pvros.def
+	@copy $(SRC)\win32\pvros.def $(TMPSRC)\pvros.def
+	@touch $(TMPSRC)\pvros.def
+
+$(TMPSRC)\pvrd.def:$(SRC)\win32\pvrd.def
+	@echo Making pvrd.def
+	@copy $(SRC)\win32\pvrd.def $(TMPSRC)\pvrd.def
+	@touch $(TMPSRC)\pvrd.def
+
+
+#/NODEFAULTLIB
+#/ENTRY:_DllMainCRTStartup@12
+
+#########################################################
+# PVROS.DLL
+#########################################################
+
+$(BIN)\$(PVROSNAME).lib: $(BIN)\$(PVROSNAME).dll
+$(BIN)\$(PVROSNAME).dll:: $(PVROS_OBJ) $(TMPSRC)\$(PVROSNAME).def
+	echo Linking $(BIN)\$(PVROSNAME).dll ...
+	$(VXDLINK) $(LFLAGS) @<<
+$(PVROS_OBJ: =^
+)
+kernel32.lib user32.lib gdi32.lib thunk32.lib winmm.lib advapi32.lib $(DXSDKROOT)\SDK\LIB\ddraw.lib
+/DLL
+/ENTRY:DllMain@12
+/SUBSYSTEM:windows,4.0
+/OUT:$(BIN)\$(PVROSNAME).dll
+/DEF:$(TMPSRC)\$(PVROSNAME).def
+/IMPLIB:$(BIN)\$(PVROSNAME).lib
+/MAP:$(BIN)\$(PVROSNAME).map
+/BASE:0xb9780000
+<<
+	@del $(BIN)\$(PVROSNAME).exp
+
+#########################################################
+# PVRDMIDx.DLL
+#########################################################
+
+$(BIN)\$(PVRDNAME).lib: $(BIN)\$(PVRDNAME).dll
+$(BIN)\$(PVRDNAME).dll:: $(PVRD_OBJ) $(TMPSRC)\pvrd.def
+	echo Linking $(BIN)\$(PVRDNAME).dll ...
+	$(VXDLINK) $(LFLAGS) @<<
+$(PVRD_OBJ: =^
+)
+advapi32.lib kernel32.lib user32.lib
+/DLL
+/SUBSYSTEM:windows,4.0
+/OUT:$(BIN)\$(PVRDNAME).dll
+/DEF:$(TMPSRC)\pvrd.def
+/IMPLIB:$(BIN)\$(PVRDNAME).lib
+/MAP:$(BIN)\$(PVRDNAME).map
+<<
+	@del $(BIN)\$(PVRDNAME).exp
+
+#########################################################
+# SGLMIDx.DLL
+#########################################################
+
+$(BIN)\$(LIBNAME).lib: $(BIN)\$(LIBNAME).dll
+$(BIN)\$(LIBNAME).dll:: $(SGL_OBJ) $(TMPSRC)\sglmid.def
+	echo Linking $(BIN)\$(LIBNAME).dll ...
+	$(VXDLINK) $(LFLAGS) @<<
+$(SGL_OBJ: =^
+)
+version.lib user32.lib kernel32.lib
+/DLL
+/SUBSYSTEM:windows,4.0
+/OUT:$(BIN)\$(LIBNAME).dll
+/DEF:$(TMPSRC)\sglmid.def
+/IMPLIB:$(BIN)\$(LIBNAME).lib
+/MAP:$(BIN)\$(LIBNAME).map
+<<
+	@del $(BIN)\$(LIBNAME).exp
+
+#########################################################
+# VXD
+#########################################################
+
+VXD_HEADERS = $(TMPSRC)\pvrosapi.h \
+			  $(SRC)\..\vsgl\vsgl.h	 \
+			  $(SRC)\..\vsgl\brdio.h  \
+			  $(SRC)\..\vsgl\sched.h
+
+$(TMP)\vsgl.obj:	$(SRC)\..\vsgl\vsgl.inc
+
+$(TMP)\pnp.obj:		$(VXD_HEADERS)
+
+$(TMP)\brdio.obj:	$(VXD_HEADERS)
+
+$(TMP)\sched.obj:	$(VXD_HEADERS)
+
+VXD_OBJ = $(TMP)\vsgl.obj $(TMP)\pnp.obj $(TMP)\brdio.obj $(TMP)\sched.obj 
+VXD_INCLUDES = -I$(DDKROOT)\inc32 -I$(SRC) -I$(SRC)\win32
+VXD_CFLAGS = -Gs -Zdpl -D_X86_ -W3 -DBLD_COFF -DIS_32 -Od
+
+VLFLAGS = /NOLOGO /VXD /NODEFAULTLIB
+VMLFLAGS = -nologo -coff -DBLD_COFF -DIS_32 -W2 -c -Cx -Zm -DMASM6 $(VXD_INCLUDES)
+!if "$(BUILD)"!="release" && "$(BUILD)" != "p6"
+VLFLAGS = $(VLFLAGS) /DEBUG /DEBUGTYPE:BOTH
+VMLFLAGS = $(VMLFLAGS) -DDEBUG -Zd -Zi -DDEBLEVEL=1
+VXD_CFLAGS = $(VXD_CFLAGS) -Od -DDEBUG
+!endif
+
+$(TMP)\verrc.res: $(TMPSRC)\win32\verrc.rc $(TMPSRC)\win32\version.h
+	@echo Compiling version resource
+	$(DDKROOT)\binw16\rc -i$(SDKROOT)\include -r -fo$(@) <<$(TMP)\temp.rc 
+#define NAME_LIB_TXT "VSGL.VXD"
+#define BUILD "$(BUILD)"
+#include "$(TMPSRC)\win32\version.h"
+#include "$(TMPSRC)\win32\verrc.rc"
+<<NOKEEP
+
+$(BIN)\vsgl.vxd: $(SRC)\..\vsgl\vsgl.def $(TMP)\verrc.res $(VXD_OBJ)
+	echo Linking $(BIN)\vsgl.vxd ...
+	$(VXDLINK) $(VLFLAGS) @<<$(TMP)\temp
+/OUT:$(BIN)\vsgl.vxd
+/MAP:$(TMP)\vsgl.map
+/DEF:$(SRC)\..\vsgl\vsgl.def
+$(DDKROOT)\lib\vxdwraps.clb
+$(VXD_OBJ)
+<<NOKEEP
+	$(DDKROOT)\bin\adrc2vxd $(BIN)\vsgl.vxd $(TMP)\verrc.res
+	@-del $(BIN)\vsgl.lib
+	@-del $(BIN)\vsgl.exp
+
+#########################################################
+# SGL
+#########################################################
+
+# sglwin32.h
+
+$(BIN)\sglwin32.h: $(SRC)\win32\sglwin32.h
+	@echo Copying sglwin32.h
+	@copy $(SRC)\win32\sglwin32.h $(BIN)\sglwin32.h
+
+# Link sglthin
+
+SGLTHIN_OBJ= \
+  $(WORKDIR)\sglthin\$(BUILD).tmp\new_thin.obj \
+  $(TMP)\pvrosif.obj $(TMP)\debug.obj \
+  $(WORKDIR)\sglthin\$(BUILD).tmp\verrc.res
+
+$(WORKDIR)\sglthin\$(BUILD).tmp\new_thin.obj: $(SRC)\.\sgl.h
+
+
+$(WORKDIR)\sglthin\sgl.lib: $(WORKDIR)\sglthin\sgl.dll
+
+$(WORKDIR)\sglthin\sgl.dll:: $(SGLTHIN_OBJ)
+	echo Linking $(WORKDIR)\sglthin\sgl.dll ...
+	$(VXDLINK) $(LFLAGS) @<<
+$(SGLTHIN_OBJ: =^
+)
+advapi32.lib libc.lib kernel32.lib user32.lib
+/DLL
+/SUBSYSTEM:windows,4.0
+/OUT:$(WORKDIR)\sglthin\sgl.dll
+/ENTRY:_DllMainCRTStartup@12 
+/IMPLIB:$(WORKDIR)\sglthin\sgl.lib 
+/MAP:$(WORKDIR)\sglthin\sgl.map
+<<
+	@-del $(WORKDIR)\sglthin\sgl.exp
+
+#########################################################
+# PVRSMX - data only DLL for resources
+#########################################################
+# Link 
+
+$(TMP)\pvrsmx.obj: $(SRC)\win32\pvrsmx.c $(SRC)\.\sgl.h
+	$(OS_CC) -Fo$(TMP)\pvrsmx.obj $(OS_CFLAGS) -I. $(INC_CC) $(SRC)\win32\pvrsmx.c
+
+PVRSMX_OBJ= \
+  $(TMP)\pvrsmx.obj \
+  $(TMP)\pvrsmx.res
+
+$(BIN)\pvrsmx.dll:: $(PVRSMX_OBJ)
+	echo Linking $(WORKDIR)\pvrsmx.dll ...
+	$(VXDLINK) $(LFLAGS) @<<
+$(PVRSMX_OBJ: =^
+)
+libc.lib kernel32.lib user32.lib
+/DLL
+/SUBSYSTEM:windows,4.0
+/OUT:$(BIN)\pvrsmx.dll
+/ENTRY:_DllMainCRTStartup@12 
+/IMPLIB:$(BIN)\pvrsmx.lib 
+/MAP:$(BIN)\pvrsmx.map
+<<
+	@-del $(BIN)\pvrsmx.exp
+

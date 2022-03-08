@@ -1,0 +1,41 @@
+3.0.0.507
+1038
+1000,default.htm,0,Series1 SDK,0,956677566,1
+vti_globalpage:BW|true
+1004,Intro/index.htm,0,Introduction,1000,951219240,0
+1005,QuickStart/index.htm,0,Quickstart Tutorial,1000,951219240,0
+1006,Tools/index.htm,0,Tools,1000,951219245,0
+1001,Docs/index.htm,0,Documentation,1000,951219216,0
+1007,Tricks/index.htm,0,Tips & Tricks,1000,951219248,0
+1003,Examples/index.htm,0,Examples,1000,951219251,0
+1002,Drivers/index.htm,0,Drivers,1000,951219216,0
+1033,QuickStart/qstart1.htm,0,QuickStart1,1005,954347345,0
+1034,QuickStart/qstart2.htm,0,QuickStart2,1005,954347345,0
+1035,QuickStart/qstart3.htm,0,QuickStart3,1005,954347345,0
+1036,QuickStart/qstart4.htm,0,QuickStart4,1005,954347345,0
+1037,QuickStart/qstart5.htm,0,QuickStart5,1005,954347345,0
+1023,Docs/sgldirect.htm,0,SGLDirect Reference,1001,951220245,0
+1022,Docs/sgl.htm,0,SGL Reference,1001,951220245,0
+1017,Docs/DDraw.htm,0,DirectDraw Programming,1001,951220189,0
+1019,Docs/Direct3D.htm,0,Direct3D Programming,1001,951220189,0
+1024,Docs/SGLguide.htm,0,SGL Programming,1001,951220189,0
+1021,Docs/Perform.htm,0,Performance Notes,1001,951219762,0
+1018,Docs/debug.htm,0,Debug and Timing Utilities,1001,951219680,0
+1020,Docs/PCIcard.htm,0,PCI Card Installation,1001,951220221,0
+1025,Docs/FAQ/index.htm,0,FAQ,1001,951219792,0
+1014,Tricks/Shell/index.htm,0,Shell,1007,951219489,0
+1016,Tricks/uTexture/index.htm,0,Micro Texturing,1007,951219492,0
+1011,Tricks/Flame/index.htm,0,Dynamic Lighting,1007,951219496,0
+1008,Tricks/AddBlend/index.htm,0,Additive Blending,1007,951219480,0
+1010,Tricks/ChromaKey/index.htm,0,Chroma Key,1007,951219502,0
+1012,Tricks/IsPVRsh/index.htm,0,PowerVR Detection,1007,951219504,0
+1013,Tricks/printf3D/index.htm,0,Ascii Text in 3D,1007,951219508,0
+1015,Tricks/TableFog/index.htm,0,Table Fog,1007,951219513,0
+1009,Tricks/AppHint/index.htm,0,AppHints,1007,951219480,0
+1026,Docs/FAQ/bilinear.htm,0,Bilinear Filtering,1025,951219897,0
+1027,Docs/FAQ/clipping.htm,0,Hardware Clipping,1025,951219897,0
+1028,Docs/FAQ/n-gons.htm,0,Performance n-gons,1025,951219852,0
+1029,Docs/FAQ/optimise.htm,0,Performance Optimisations,1025,951219852,0
+1030,Docs/FAQ/overlap.htm,0,HW-SW Overlap,1025,951219852,0
+1031,Docs/FAQ/PVRdetect.htm,0,PowerVR Detection,1025,951219852,0
+1032,Docs/FAQ/s3.htm,0,S3 Memory,1025,951219852,0

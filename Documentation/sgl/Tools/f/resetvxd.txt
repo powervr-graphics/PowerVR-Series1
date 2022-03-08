@@ -1,0 +1,11 @@
+ResetVXD.exe
+------------
+
+In rare cases, if a previously run 3D application has not exited properly
+(eg crashed) the VXD is not closed properly and cannot be used by other
+3D applications. This will cause an error message "Cannot load SGL.DLL".
+
+This utility ResetVXD.exe resets the VXD.
+
+Do not use wih PowerVR drivers older than 3.1.0b4.
+ 

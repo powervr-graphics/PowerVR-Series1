@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>HW-SW Overlap</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="bilinear.htm">Bilinear&nbsp;Filtering</a></nobr><br><nobr><a href="clipping.htm">Hardware&nbsp;Clipping</a></nobr><br><nobr><a href="n-gons.htm">Performance&nbsp;n-gons</a></nobr><br><nobr><a href="optimise.htm">Performance&nbsp;Optimisations</a></nobr><br><nobr>HW-SW&nbsp;Overlap</nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="s3.htm">S3&nbsp;Memory</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b><font face="Arial" size="4">
+
+<p></font><font face="Verdana" size="2">Overlapping Hardware and Software Processing</font></b><font size="1"></p>
+
+<p align="justify"></font><font size="3" face="Verdana">&nbsp;</font><font size="2"></p>
+
+<p align="justify"><font face="Verdana">This section describes the single most important
+performance optimisation for PowerVR applications. Many other optimisations are listed in
+the next chapter.</font></p>
+
+<p align="justify"><font face="Verdana">In rendering systems based on display lists the
+hardware begins the render once the entire scene has been processed in software.
+Applications must be careful to avoid operations that force the CPU does to wait for the
+hardware to complete the render before starting software processing for the next frame.
+This is how software and hardware should &#145;overlap&#146; so they operate in parallel:</font></p>
+
+<ul>
+  <b><p align="justify"><font face="Verdana">(software for frame 1)</font></p>
+  </b><p align="justify"><font face="Verdana">then</font></p>
+  <b><p align="justify"><font face="Verdana">(hardware for frame 1)</font></b> <font face="Verdana"> and <b>(software for
+  frame 2)</b> in parallel</font></p>
+  <p align="justify"><font face="Verdana">then</font></p>
+  <b><p align="justify"><font face="Verdana">(hardware for frame 2)</font></b> <font face="Verdana"> and <b>(software for
+  frame 3)</b> in parallel</font></p>
+  <p align="justify"><font face="Verdana">etc</font></p>
+  <p align="justify"><font face="Verdana">&nbsp;</font></p>
+</ul>
+
+<p align="justify"><font face="Verdana">The blit or flip that causes the rendered image to
+be displayed on the screen needs to be done after the hardware has finished that frame,
+which would be during (or after) the software processing for the next frame.</font></p>
+
+<p align="justify"><font face="Verdana">Another important consideration for this process is
+writing to texture memory. As this cannot be done while the hardware is rendering,
+functions that create or change textures, such as sgl_create_texture, sgl_set_texture and
+sgl_direct_set_texture wait in a delay loop until the hardware has finished the current
+render.</font></p>
+
+<p align="justify"><font face="Verdana">In most well designed 3D scenes the software
+processing will take longer than hardware. This allows performance to scale linearly with
+CPU speed. Any regular calls to texture writing functions should therefore be done just
+before starting the next hardware render, minimising the CPU time for the frame.</font></p>
+
+<p><font face="Verdana">&nbsp;</font></font><font size="3"></p>
+
+<p><font face="Verdana">Optimal game loop for SGL Direct:</font></font></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">start hardware render (sgltri_render) for frame n-1</font></small></p>
+
+<p><small><font face="Verdana">do game processing</font></small></p>
+
+<p><small><font face="Verdana">(including game input devices) for frame n</font></small></p>
+
+<p><small><font face="Verdana">done2d = FALSE</font></small></p>
+
+<p><small><font face="Verdana">sgltri_startofframe for frame n</font></small></p>
+
+<p><small><font face="Verdana">while (more triangle sets to do)</font></small></p>
+
+<p><small><font face="Verdana">{</font></small></p>
+
+<p><small><font face="Verdana">sgltri_triangles for frame n</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">if ((!done2D) &amp;&amp; sgltri_isrendercomplete)</font></small></p>
+
+<p><small><font face="Verdana">{</font></small></p>
+
+<p><small><font face="Verdana">2D, e.g. score or HUD* for frame n-1</font></small></p>
+
+<p><small><font face="Verdana">blit/flip for frame n-1</font></small></p>
+
+<p><small><font face="Verdana">done2d = TRUE</font></small></p>
+
+<p><small><font face="Verdana">}</font></small></p>
+
+<p><small><font face="Verdana">}</font></small></p>
+
+<p><small><font face="Verdana">sgl_set_texture for frame n</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">*Head Up Display</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small><font size="3"></p>
+
+<p><font face="Verdana">Optimal game loop for Direct3D:</font></font></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small><font size="1"></p>
+
+<p><font face="Verdana">EndScene (starts hardware render) for frame n-1</font></font></p>
+
+<p><small><font face="Verdana">do game processing for frame n</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">BeginScene for frame n</font></small></p>
+
+<p><small><font face="Verdana">process execute buffer for frame n</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">2D, e.g. score or HUD for frame n-1</font></small></p>
+
+<p><small><font face="Verdana">blit/flip for frame n-1</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small><font size="2"></p>
+
+<p><font face="Verdana">It is not possible in Direct3D to determine whether the hardware has
+finished the render so 2D operations for a given frame need to be done after all of the
+software activity for the next frame.</font></p>
+
+<p><font face="Verdana">Video memory to video memory blits and flips, and texture memory
+writes (usually using blits) are automatically deferred until the last moment by the
+PowerVR Direct3D driver, but blits from system memory and locks to the render surface are
+not.</font></p>
+
+<p><font face="Verdana">&nbsp;</font></font></p>
+
+<p><small><font face="Verdana">&nbsp;</font></small>
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

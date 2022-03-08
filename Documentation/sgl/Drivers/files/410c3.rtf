@@ -1,0 +1,774 @@
+{\rtf1\ansi\deff0\deftab720{\fonttbl{\f0\fswiss MS Sans Serif;}{\f1\froman\fcharset2 Symbol;}{\f2\fmodern Courier New;}{\f3\froman Times New Roman;}}
+{\colortbl\red0\green0\blue0;}
+\deflang2057\pard\plain\f2\fs20\b SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab system.c changed from 1.93 to 1.94
+\par \tab \tab Changed PC98 detection so that we check a range.
+\par \plain\f2\fs20\b 
+\par HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab none
+\par ______\plain\f2\fs20\b _________________________________________________________________
+\par \plain\f2\fs20 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab debug.c changed from 1.17 to 1.18
+\par \tab \tab ISV Timing/Debug build: moved OutputMetric to EndScene
+\par \tab \tab only (was BeginScene AND EndScene).
+\par \tab pvrd3dcb.c changed from 1.64 to 1.65
+\par \tab \tab ISV Timing/Debug build: moved OutputMetric to EndScene
+\par \tab \tab only (was BeginScene AND EndScene).
+\par 
+\par ______\plain\f2\fs20\b _________________________________________________________________
+\par 
+\par Build Info - 4.1.0.19 (15th December, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab profile.c changed from 1.25 to 1.26
+\par \tab \tab Need to add HWINI\\\\ so registry search path in GetHwIniStringFromReg().
+\par \tab pvrd.c changed from 1.89 to 1.90
+\par \tab \tab Removed useless calls to SglReadPrivateProfileInt() in
+\par \tab \tab PVRDCreateRenderContext() since they will be cancelled by
+\par \tab \tab the next call anyway.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab debug.c changed from 1.17 to 1.18
+\par \tab \tab ISV Timing/Debug build: moved OutputMetric to EndScene
+\par \tab \tab only (was BeginScene AND EndScene).
+\par \tab pvrd3dcb.c changed from 1.64 to 1.65
+\par \tab \tab ISV Timing/Debug build: moved OutputMetric to EndScene
+\par \tab \tab only (was BeginScene AND EndScene).
+\par 
+\par ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.18 (12th December, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab d3dcore.h changed from 1.11 to 1.12
+\par \tab \tab Now holds the D3D specific triangle process routines. Both for
+\par \tab \tab execute and drawprimitive.
+\par \tab profile.c changed from 1.23 to 1.25
+\par \tab \tab revision 1.25 
+\par \tab \tab Use define WHICH_CARD_REGISTRY_STRING (defined in pvrosapi.h)
+\par \tab \tab to determine where to look for the manufacturer.
+\par \tab \tab revision 1.24 
+\par \tab \tab Added GetManStringFromRegistry() routine which is used to
+\par \tab \tab select the correct registry area depending on the PCX
+\par \tab \tab manufacturer.
+\par \tab pvrosapi.h changed from 1.78 to 1.80
+\par \tab \tab revision 1.80
+\par \tab \tab Defined WHICH_CARD_REGISTRY_STRING (defined in pvrosapi.h)
+\par \tab \tab to determine where to look for the manufacturer.
+\par \tab \tab revision 1.79
+\par \tab \tab Added enum of possible hardware manufacturers of PCX's.
+\par \tab \tab brdcfg.c changed from 1.15 to 1.16
+\par \tab \tab Added call to GetManStringFromRegistry() routine which
+\par \tab \tab returns the registry area to check for app hints.
+\par \tab d3dtriml.asm changed from 1.11 to 1.13
+\par \tab \tab revision 1.13
+\par \tab \tab Tweaked code to make it tidier.
+\par \tab \tab revision 1.12
+\par \tab \tab Added code to simulate Z buffer system more effectly.
+\par \tab \tab The bogus inv Z value is now set to the maximum 1/w
+\par \tab \tab value when the Z buffer is enabled. Not perfect but heh...
+\par \tab pvrddll.c changed from 1.17 to 1.19
+\par \tab \tab revision 1.19
+\par \tab \tab Use define WHICH_CARD_REGISTRY_STRING (defined in pvrosapi.h)
+\par \tab \tab to determine where to look for the manufacturer.
+\par \tab \tab revision 1.18
+\par \tab \tab When dll starts we need to find out where in the
+\par \tab \tab registry to put LastD3DApp.
+\par \tab pnp.c changed from 1.20 to 1.21
+\par \tab \tab Added routine GetManufacturerType().
+\par \tab vsgl.h changed from 1.19 to 1.20
+\par \tab \tab Added VSGL_GET_MAN_TYPE to allow VxD calls to GetManufacturerType()
+\par \tab \tab routine in pnp.c .
+\par \tab vsgl.asm changed from 1.34 to 1.35
+\par \tab \tab Added VSGL_GET_MAN_TYPE to allow VxD calls to GetManufacturerType()
+\par \tab \tab routine in pnp.c .
+\par \tab new_thin.c changed from 1.36 to 1.38
+\par \tab \tab revision 1.38
+\par \tab \tab Use define WHICH_CARD_REGISTRY_STRING (defined in pvrosapi.h)
+\par \tab \tab to determine where to look for the manufacturer.
+\par \tab \tab revision 1.37
+\par \tab \tab When dll loadds we need to know where in the registry to
+\par \tab \tab put the LastSGLApp string.
+\par 
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========\plain\f2\fs20 
+\par 
+\par \tab d3dpvros.c changed from 1.23 to 1.27
+\par \tab \tab revision 1.27
+\par \tab \tab Use define WHICH_CARD_REGISTRY_STRING (defined in pvrosapi.h)
+\par \tab \tab to determine where to look for the manufacturer.
+\par \tab \tab revision 1.26
+\par \tab \tab \tab Changed detection of manufacturer. Now we read registry
+\par \tab \tab \tab \\\\SOFTWARE\\\\POWERVR\\\\STARTUP\\\\BoardType string.
+\par \tab \tab revision 1.25
+\par \tab \tab \tab Check which manufacturer is present. ie Matrox or VideoLogic.
+\par \tab \tab revision 1.24
+\par \tab \tab \tab Clear GLOBALTRANS flag.
+\par \tab debug.c changed from 1.15 to 1.17
+\par \tab \tab \tab Removed fOutputToConsole extern to pvrhal32.h
+\par \tab debug.h changed from 1.12 to 1.13
+\par \tab \tab \tab Removed fOutputToConsole extern to pvrhal32.h
+\par \tab drawprim.c changed from 1.16 to 1.17
+\par \tab \tab \tab Remove unnecessary removal of clearing of global trans
+\par \tab \tab \tab flag.
+\par \tab pvrd3dcb.c changed from 1.61 to 1.64
+\par \tab \tab \tab revision 1.64
+\par \tab \tab \tab Removed unneeded prototype.
+\par \tab \tab \tab revision 1.63
+\par \tab \tab \tab Removed TIMING registry stuff to pvrhal32.c .
+\par \tab \tab \tab revision 1.62
+\par \tab \tab \tab 1. Removed stipple alpha renderstates as we don't support
+\par \tab \tab \tab    it.
+\par \tab \tab \tab 2. Removed unnecessary clearing of global trans flag.
+\par \tab \tab \tab 3. Reset supported flag after every render state. Only
+\par \tab \tab \tab    in debug builds.
+\par \tab pvrddcb.c changed from 1.23 to 1.24
+\par \tab \tab \tab Added code to synchnonise 2D blits suggested by Matrox.
+\par \tab \tab \tab Changed type of eManufacturerType.
+\par \tab pvrhal32.c changed from 1.164 to 1.167
+\par \tab \tab \tab revision 1.166
+\par \tab \tab \tab Implemented different registry areas depending on which card
+\par \tab \tab \tab present. ie Matrox or Videologic.
+\par \tab \tab \tab revision 1.165
+\par \tab \tab \tab 1. Read TIMMING registry entries in GetHWStrings().
+\par \tab \tab \tab 2. Removed unnecessary registry reads and variables.
+\par \tab pvrhal32.h changed from 1.80 to 1.83
+\par \tab \tab \tab revision 1.83
+\par \tab \tab \tab Changed type of eManufacturerType variable.
+\par \tab \tab \tab revision 1.82
+\par \tab \tab \tab Added manufacturer dependent string defines. Defined enum type
+\par \tab \tab \tab and added manufacturer variable.
+\par \tab verrc.rc changed from 1.11 to 1.12
+\par \tab \tab \tab WHQL numbering convention adopted
+\par \tab autover.c changed from 1.1 to 1.2
+\par \tab \tab \tab Added WHQL complient numbering system
+\par ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.17 (8th December, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab d3dtri.c changed from 1.26 to 1.27
+\par \tab \tab ixed vertex fog with DrawPrimitive.
+\par \tab verrc.rc changed from 1.6 to 1.7
+\par \tab \tab made copyright date 1997 - just in time for 1998
+\par 
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========\plain\f2\fs20 
+\par 
+\par \tab debug.c changed from 1.14 to 1.15
+\par \tab \tab ISV timing build - average poly counts over N frames
+\par \tab \tab timing - times in cycles AND milliseconds
+\par \tab \tab timing - status bar - additional Total Frame time bar
+\par \tab \tab timing - apphint: turn output to mono screen off.
+\par 
+\par \tab debug.h changed from 1.11 to 1.12
+\par \tab \tab ISV timing build - average poly counts over N frames
+\par \tab \tab timing - times in cycles AND milliseconds
+\par \tab \tab timing - status bar - additional Total Frame time bar
+\par \tab \tab timing - apphint: turn output to mono screen off.
+\par 
+\par \tab pvrd3dcb.c changed from 1.60 to 1.61
+\par \tab \tab ISV timing build - average poly counts over N frames
+\par \tab \tab timing - times in cycles AND milliseconds
+\par \tab \tab timing - status bar - additional Total Frame time bar
+\par \tab \tab timing - apphint: turn output to mono screen off.
+\par 
+\par \plain\f2\fs20\b 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.16 (28th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab debug.c changed from 1.63 to 1.64
+\par \tab \tab added a seperate control gnOutputToConsole for developer and timing builds
+\par \tab metrics.c changed from 1.16 to 1.17
+\par \tab \tab changed developer and timing builds stuff.
+\par \tab sgllite.c changed from 1.88 to 1.89
+\par \tab \tab added two App hints "OutputToConsole" and "FramesToAverage", added a yello
+\par \tab \tab wbar for total frame time in developer and timing builds.
+\par \tab brdsetup.c changed from 1.73 to 1.74
+\par \tab \tab Removed unneeded OpenVXD() calls which were causing performance
+\par \tab \tab decreases.
+\par 
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========\plain\f2\fs20 
+\par 
+\par \tab debug.c changed from 1.13 to 1.14
+\par \tab \tab release build now compiles out large string table in debug.c
+\par \tab \tab and all ISV Developer/Timing functions compiled out too.
+\par 
+\par \tab debug.h changed from 1.10 to 1.11
+\par \tab \tab release build now compiles out large string table in debug.c
+\par \tab \tab and all ISV Developer/Timing functions compiled out too.
+\par \plain\f2\fs20\b 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.15 (27th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab dcore.h changed from 1.11 to 1.12
+\par \tab \tab added DPFDEV messages.
+\par \tab d3dcore.h changed from 1.10 to 1.11
+\par \tab \tab added DPFDEV messages.
+\par \tab dpoint.c changed from 1.47 to 1.48
+\par \tab \tab added DPFDEV messages.
+\par \tab dsprite.c changed from 1.22 to 1.23
+\par \tab \tab added DPFDEV messages.
+\par \tab d3dtri.c changed from 1.25 to 1.26
+\par \tab \tab 1. When SGLTT_DECAL selected then we always use flat shading. ie ignore
+\par \tab \tab    smooth shading and highlight flags.
+\par \tab \tab 2. Added extra plane stuff to DirectTriPrimitives() routine since it
+\par \tab \tab    was left out.
+\par \tab pktsp.c changed from 1.77 to 1.78
+\par \tab \tab added DPFDEV messages.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========\plain\f2\fs20 
+\par 
+\par \tab d3dpvros.c changed from 1.22 to 1.23
+\par \tab \tab Removed SGLTT_TEXAPI flag as it isn't needed anymore.
+\par 
+\par \tab debug.c changed from 1.11 to 1.13
+\par \tab \tab Added Timing build. Removed internal debug from Developer build.
+\par \tab \tab Timing build draws status bar across Render surface and
+\par \tab \tab outputs polygon counts (and h/w & s/w waiting times in Developer build).
+\par 
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par 
+\par \tab debug.h changed from 1.8 to 1.10
+\par \tab \tab Added Timing build. Removed internal debug from Developer build.
+\par \tab \tab Timing build draws status bar across Render surface and
+\par \tab \tab outputs polygon counts (and h/w & s/w waiting times in Developer build).
+\par 
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par 
+\par \tab deferred.c changed from 1.37 to 1.38
+\par \tab \tab added ISV Debug Driver output stuff
+\par 
+\par \tab drawprim.c changed from 1.13 to 1.16
+\par \tab \tab Added Timing build. Removed internal debug from Developer build.
+\par \tab \tab Timing build draws status bar across Render surface and
+\par \tab \tab outputs polygon counts (and h/w & s/w waiting times in Developer build).
+\par 
+\par \tab \tab 1. Removed fBlendingRequired flag as it isn't needed.
+\par \tab \tab 2. With vertex trans test only check for D3DTBLEND_MODULATEALPHA.
+\par 
+\par \tab \tab added ISV Debug Driver stuff
+\par 
+\par \tab pvrd3dcb.c changed from 1.54 to 1.60
+\par \tab \tab Added Timing build. Removed internal debug from Developer build.
+\par \tab \tab Timing build draws status bar across Render surface and
+\par \tab \tab outputs polygon counts (and h/w & s/w waiting times in Developer build).
+\par 
+\par \tab \tab Implemented COPY texture blend mode. Same as DECAL.
+\par 
+\par \tab \tab 1. Removed fBlendingRequired flag as it isn't needed.
+\par \tab \tab 2. With vertex trans test only check for D3DTBLEND_MODULATEALPHA.
+\par 
+\par \tab \tab Fixed Zbias for debug build.
+\par \tab 
+\par \tab \tab Implemented Z bias render state.
+\par 
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par 
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par \tab 
+\par \tab pvrddcb.c changed from 1.22 to 1.23
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par 
+\par \tab pvrhal32.c changed from 1.160 to 1.164
+\par \tab \tab We now export COPY texture blend cap. Functionally the same
+\par \tab \tab as DECAL.
+\par 
+\par \tab \tab Now writes LastDDApp to LastApp key in the registry.
+\par \tab \tab LastD3DApp is written by pvrmidX.dll and LastSGLApp
+\par \tab \tab by sgl.dll.
+\par \tab 
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par 
+\par \tab pvrhal32.mak changed from 1.41 to 1.43
+\par \tab \tab Added Timing build. Removed internal debug from Developer build.
+\par \tab \tab Timing build draws status bar across Render surface and
+\par \tab \tab outputs polygon counts (and h/w & s/w waiting times in Developer build).
+\par 
+\par \tab \tab added ISV Debug build option (DEVELOPER=1).
+\par 
+\par \tab textures.c changed from 1.58 to 1.63\plain\f2\fs20\b 
+\par \plain\f2\fs20 \tab \tab 
+\par \tab \tab Added define NO_COPY_WITH_CK to disable extra work.
+\par \tab \tab In BlitTexture() always copy pixels over even when colour key requested.
+\par \tab \tab This is achieved by setting psColourKey to NULL.
+\par 
+\par \tab \tab Fixed partial blitting for 4, 8, 24 and 32 bit formats.
+\par 
+\par \tab \tab In BlitTexture() always set destination flags TF_HWSUPPORT
+\par \tab \tab and TF_RGB. This fixes extra checking in texapi.c .
+\par 
+\par \tab \tab Added ISV Debug Driver changes. Partially complete (deferred and
+\par \tab \tab drawprimitive still to be modified).
+\par \tab \tab Makefile not yet altered for ISV Debug Driver build yet.
+\par \tab \tab Debug.c contains a few obsolete implementations - needs cleaning up.
+\par \plain\f2\fs20\b 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.14 (26th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab dpack.h changed from 1.4 to 1.5
+\par \tab \tab removed redundant code
+\par \tab sgl.h changed from 1.227 to 1.228
+\par \tab \tab Fixed file so it would compile (2 context members had identical names).
+\par \tab sgllite.c changed from 1.87 to 1.88
+\par \tab \tab changed the way to read "StateBar" to HWRdValFileUInt()
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.13 (25th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab dlines.c changed from 1.45 to 1.46
+\par \tab \tab removed reference to SGLTT_TEXAPI
+\par \tab dpoint.c changed from 1.46 to 1.47
+\par \tab \tab removed reference to SGLTT_TEXAPI
+\par \tab dsprite.c changed from 1.21 to 1.22
+\par \tab \tab removed reference to SGLTT_TEXAPI
+\par \tab dtri.c changed from 1.142 to 1.143
+\par \tab \tab removed reference to SGLTT_TEXAPI
+\par \tab sgl.h changed from 1.224 to 1.227
+\par \tab \tab Fixed the 'reserved flags' comments to be consistent with the previous
+\par \tab \tab changes.
+\par \tab \tab Moved some flags and context variables to maintain SGL Direct 2
+\par \tab \tab compatibility.
+\par \tab \tab removed REVERSED_NO_SORT and Texapi flag
+\par \tab sglmacro.h changed from 1.25 to 1.26
+\par \tab \tab added a define for REVERSED_SORT
+\par \tab w32dll.c changed from 1.73 to 1.74
+\par \tab \tab removed reference to SGLTT_TEXAPI
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.12 (24th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab From 4.1.0.8 to 4.1.0.12 many changes relatingto the PVRDebug
+\par \tab application have been made.  These builds were not issued, as 
+\par \tab they were experimental builds only.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.8 (18th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par \plain\f2\fs20 \tab 
+\par \tab d3dlines.c changed from 1.3 to 1.4
+\par \tab \tab Changed TSP increment of PackHighShad in ShadowFuncs from 6 to 4.
+\par \tab dlines.c changed from 1.43 to 1.44
+\par \tab \tab Changed TSP increment of PackHighShad in ShadowFuncs from 6 to 4.
+\par \tab txmops.c changed from 1.92 to 1.93
+\par \tab \tab Added extra check for API bad parameters.
+\par \tab new_thin.c changed from 1.34 to 1.35
+\par \tab \tab put in code to write the name of the last SGL app
+\par \tab wintgt.dat changed from 1.34 to 1.35\plain\f2\fs20\b 
+\par \plain\f2\fs20 \tab \tab added registry muck to sgl thin link line
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \tab \plain\f2\fs20 pvrhal32.c changed from 1.159 to 1.160
+\par \tab \tab moved the code of get driver info from other device by JH
+\par \tab textures.c changed from 1.54 to 1.58
+\par \tab \tab In BlitTexture() if we don't have a destination pixel format
+\par \tab \tab use the format of the primary surface.
+\par ______\plain\f2\fs20\b _________________________________________________________________
+\par Build Info - 4.1.0.6 (11th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab callback.c changed from 1.13 to 1.14
+\par \tab \tab added extra check in PVROSCallbackRegister() to avoid the same callback
+\par \tab \tab be added again, fixed the flip buffer bug in Actua Soccer2.
+\par \tab d3dlines.c changed from 1.2 to 1.3
+\par \tab \tab added depth bias
+\par \tab d3dpoint.c changed from 1.2 to 1.3
+\par \tab \tab added depth bias
+\par \tab debug.c changed from 1.61 to 1.62
+\par \tab \tab added disable the PVRDebug window in DebugInit() and enable the window
+\par \tab \tab in DebugDeinit().
+\par \tab debug.h changed from 1.24 to 1.25
+\par \tab \tab added the function DebugDeinit() in developer's driver.
+\par \tab disp.c changed from 1.62 to 1.64
+\par \tab \tab 1.64 :  made depth bias work
+\par \tab \tab 1.63 :  added depth bias - but not tested yet
+\par \tab dldelete.c changed from 1.13 to 1.14
+\par \tab \tab Added a cast to remove a compiler warning.
+\par \tab dlines.c changed from 1.41 to 1.43
+\par \tab \tab 1.43 :  took range limiting of z-bias value
+\par \tab \tab 1.42 :  dpoint.c changed from 1.43 to 1.45
+\par \tab dpoint.c changed from 1.43 to 1.45
+\par \tab \tab 1.45 :  took range limiting of z-bias value
+\par \tab \tab 1.44 :  added depth bias
+\par \tab dprocess.h changed from 1.13 to 1.14
+\par \tab \tab made gouraud highlight white and changed its sape a bit
+\par \tab dsprite.c changed from 1.16 to 1.19
+\par \tab \tab 1.19 :  took range limiting of z-bias value
+\par \tab \tab 1.18 :  added depth bias
+\par \tab \tab 1.17 :  Removed a compiler warning.
+\par \tab dtri.c changed from 1.139 to 1.142
+\par \tab \tab 1.142:  took range limiting of z-bias value
+\par \tab \tab 1.141:  stupid typo
+\par \tab \tab 1.140:  added depth bias stuff - which is untested and will need tweaking
+\par \tab d3dtri.c changed from 1.24 to 1.25
+\par \tab \tab added depth bias stuff - untested so will probably need tweaking
+\par \tab rnconvst.h changed from 1.18 to 1.19
+\par \tab \tab Removed the FORCE_NO_FPU pragma message.
+\par \tab rnmesh.h changed from 1.20 to 1.21
+\par \tab \tab Removed the FORCE_NO_FPU pragma message.
+\par \tab sgl.h changed from 1.221 to 1.223
+\par \tab \tab 1.223:  chnaged depth bias to an int which will be specified as a number of
+\par \tab \tab \tab   min z-0depth increments
+\par \tab \tab 1.222:  modified to add fields to cotrol depth bias
+\par \tab tmalloc.c changed from 1.23 to 1.24
+\par \tab \tab Removed some compiler warnings.
+\par \tab brdcfg.c changed from 1.14 to 1.15
+\par \tab \tab chnaged another default/defaults
+\par \tab pvrddll.c changed from 1.14 to 1.15
+\par \tab \tab added function call DebugDeinit() when PROCESS_DETACH for developer's 
+\par \tab \tab driver to enable the PVRDebug window.
+\par \tab system.c changed from 1.91 to 1.92
+\par \tab \tab made fx problem card detection use new pvrsmx.dll
+\par \tab pvrsmx.c added
+\par \tab \tab a file to hide things in - initial revision
+\par \tab w32dll.c changed from 1.70 to 1.72
+\par \tab \tab 1.72 :  removed two flags from flags warning - DEPTHBIAS ans SELECTTRANSSORT
+\par \tab \tab 1.71 :  added function call DebugDeinit() when PROCESS_DETACH for developer's 
+\par \tab \tab \tab   driver to enable the PVRDebug window.
+\par \tab pcmake.mak changed from 1.37 to 1.38
+\par \tab \tab added stuff to build a pvrsmx file
+\par \tab wintgt.dat changed from 1.32 to 1.34\tab 
+\par \tab \tab 1.34 :  added stuff to build pvrsmx.dll
+\par \tab \tab 1.33 :  removed ^M's
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab pvrddcb.c changed from 1.21 to 1.22
+\par \tab \tab 1. Removed commented out code which calls BlitTexture().
+\par \tab \tab 2. Removed extra parameter passed to BlitTexture(). Was always FALSE
+\par \tab \tab    anyway.
+\par \tab pvrhal32.c changed from 1.158 to 1.159
+\par \tab \tab Fixed memory reporting.
+\par \tab textures.c changed from 1.51 to 1.54
+\par \tab \tab revision 1.54
+\par \tab \tab \tab Use HEL blit to convert from source to destination in BlitTexture().
+\par \tab \tab revision 1.53
+\par \tab \tab \tab Tidied up BlitTexture() routine. Only works for 16, 24 and 32 bit
+\par \tab \tab \tab depth blits. 24bit and 32bit still not tested.
+\par \tab \tab revision 1.52
+\par \tab \tab \tab 1. Changed BlitTexture() function so that only one parameter is passed.
+\par \tab \tab \tab 2. When coping from source to destination the destination specifies
+\par \tab \tab \tab    the texture format. Hence the source is changed in the copy.
+\par \tab \tab \tab 3. Colour keying is done on the source. ie pixels which are colour
+\par \tab \tab \tab    keyed aren't copied. This is checked in the copy.
+\par \tab \tab \tab 4. The BlitTexture() doesn't change the texture format.
+\par \tab \tab \tab NOTE: Still under development so that performance isn't a consideration.
+\par \tab \tab \tab       ie the copy routines are in C and always check for CK'ing.
+\par \tab textures.h changed from 1.21 to 1.22
+\par \tab \tab Removed parameter from BlitTexture() prototype
+\par \plain\f2\fs20\b 
+\par _______________________________________________________________________
+\par Build Info - 4.1.0.5 (6th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab d3dcore.h changed from 1.9 to 1.10
+\par \tab \tab when have no sort, put all trans faces into the front list.
+\par \tab d3dreg.c changed from 1.30 to 1.31
+\par \tab \tab added function NoSortTransFaceLists() for processing no sort trans 
+\par \tab \tab face lists.
+\par \tab dvdevice.c changed from 1.50 to 1.51
+\par \tab \tab fixed a bug for OutputTotalMetric when the total render time is 0.
+\par \tab pvrd.c changed from 1.87 to 1.89
+\par \tab \tab 1.89 :  Extended the DAG_SORTING compile switches around the no-sort
+\par \tab \tab \tab   pieces of code so that it would build for PCX1.
+\par \tab \tab 1.88 :  added a global gNoSortTransFaces for no sort trans face lists.
+\par \tab d3dtriml.asm changed from 1.10 to 1.11
+\par \tab \tab when have no sort, put all trans faces into the front list.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab d3dpvros.c changed from 1.21 to 1.22
+\par \tab \tab Initialise Trans sorting mechanism.
+\par \tab drawprim.c changed from 1.11 to 1.13
+\par \tab \tab 1:13 :  
+\par \tab \tab 1. Forget what I said in the last log message as it is crap.
+\par \tab \tab    render states need to be handled.
+\par \tab \tab 2. Need to initialise texture wrap in draw primitive. Bit of
+\par \tab \tab    missed in draw primitive but in execute buffers.
+\par \tab \tab    NOTE: Any changes to execute buffers need to be added to
+\par \tab \tab 1:12 :  
+\par \tab \tab 1. Forget what I said in the last log message as it is crap.
+\par \tab \tab    render states need to be handled.
+\par \tab \tab 2. Need to initialise texture wrap in draw primitive. Bit of
+\par \tab \tab    missed in draw primitive but in execute buffers.
+\par \tab \tab    NOTE: Any changes to execute buffers need to be added to
+\par \tab pvrd3dcb.c changed from 1.53 to 1.54
+\par \tab \tab 1. Removed if defined out code.
+\par \tab \tab 2. Set texture filtering type to value in PVRContext.
+\par \tab \tab    This will allow FourCC control of texture filtering.
+\par \tab pvrddcb.c changed from 1.20 to 1.21
+\par \tab \tab FourCC control of translucent sorting method enabled.
+\par \tab pvrhal32.c changed from 1.157 to 1.158
+\par \tab \tab Changed memory (bogus Z buffer & texture memory) reporting
+\par \tab \tab according to Mike Brassington.\plain\f2\fs20\b 
+\par 
+\par _______________________________________________________________________
+\par Build Info - 4.1.0.4 (4th November, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab pvrosapi.h changed from 1.77 to 1.78
+\par \tab \tab Made the exported function table smaller.
+\par \tab brdsetup.c changed from 1.72 to 1.73
+\par \tab \tab Added SHARED_HEAP define to toggle between VxD or Microsoft shared heap
+\par \tab \tab allocation.
+\par \tab hwregs.c changed from 1.84 to 1.85
+\par \tab \tab Removed a bit off non-working code.
+\par \tab pnp.c changed from 1.19 to 1.20\plain\f2\fs20\b 
+\par \plain\f2\fs20 \tab \tab VSGLReserve() now allocates from the shared heap. Used by
+\par \tab \tab TSP parameter allocation.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab pvrhal32.c changed from 1.155 to 1.157
+\par \tab \tab Added DrawPrimitive app hint to enable/disable support
+\par \tab \tab for DrawPrimitive.  The default is that we do support DrawPrimitive
+\par \tab pvrhal32.h changed from 1.79 to 1.80
+\par \tab \tab Added externs for keyColour apphint
+\par \tab \tab \tab fChangeKeyColour
+\par \tab \tab \tab dwKeyColour
+\par \tab textures.c changed from 1.50 to 1.51
+\par \tab \tab checks for apphint before setting the KeyColour
+\par \tab deferred.c changed from 1.36 to 1.37
+\par \tab \tab Removed PVROSMapLinearToPhysical() calls since does nothing
+\par \tab pvrd3dcb.c changed from 1.52 to 1.53
+\par \tab \tab Removed PVROSMapLinearToPhysical() calls since does nothing
+\par \tab render.c changed from 1.12 to 1.13
+\par \tab \tab Removed PVROSMapLinearToPhysical() calls since does nothing
+\par 
+\par \plain\f2\fs20\b 
+\par _______________________________________________________________________
+\par Build Info - 4.1.0.3 (31st October, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab dcore.h changed from 1.9 to 1.10
+\par \tab \tab when have no sort, put all trans faces into the front list.
+\par \tab dregion.c changed from 1.106 to 1.107
+\par \tab \tab added a function NoSortTransFaceLists() for processing no sort trans face
+\par \tab \tab lists.
+\par \tab pvrd.c changed from 1.86 to 1.87
+\par \tab \tab Added Developer build stuff that was missing.
+\par \tab sgllite.c changed from 1.82 to 1.85
+\par \tab \tab 1.85  :  changed the App Hint name for no sort to SGLTRANSSORT.
+\par \tab \tab 1.84  :  added an App hint "NoSort" for no sort trans face lists, 1 for 
+\par \tab \tab \tab    no sort, 2 for reversed no sort.
+\par \tab \tab 1.83  :  added a global gNoSortTransFaces for no sort trans face lists.
+\par \tab brdsetup.c changed from 1.71 to 1.72
+\par \tab \tab When allocating, realloc'ing and freeing TSP parameter memory use
+\par \tab \tab new PVROSTSP..() routines defined in system.c which allocate locked
+\par \tab \tab system memory through VxD calls.
+\par \tab dtriml.asm changed from 1.23 to 1.24
+\par \tab \tab when have no sort, put all trans faces into the front list.
+\par \tab system.c changed from 1.90 to 1.91
+\par \tab \tab Added TSP parameter memory allocatoin functions; PVROSTSPAlloc(),
+\par \tab \tab PVROSTSPRealloc() and PVROSTSPFree().
+\par \tab pnp.c changed from 1.18 to 1.19
+\par \tab \tab Added VxD function VSGLPageReAllocate() and PageReAllocate() which
+\par \tab \tab are needed for TSP parameter buffer management.
+\par \tab vsgl.h changed from 1.18 to 1.19
+\par \tab \tab Added VSGL_PAGE_REALLOCATE define to export new VxD function.
+\par \tab vsgl.asm changed from 1.33 to 1.34
+\par \tab \tab Export VSGLPageReAllocate() VxD routine.
+\par 
+\par \plain\f2\fs20\b HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab pvrddcb.c changed from 1.19 to 1.20\plain\f2\fs20\b 
+\par \plain\f2\fs20 \tab \tab fixed type\plain\f2\fs20\b 
+\par _______________________________________________________________________
+\par Build Info - 4.1.0.2 (28th October, 1997)
+\par 
+\par SGL CHANGES
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab dsprite.c changed from 1.15 to 1.16
+\par \tab \tab Removed ExtendTSPBuffer() routine and changed calls to
+\par \tab \tab PVROSExtendTSPBuffer().
+\par \tab dtri.c changed from 1.138 to 1.139
+\par \tab \tab Removed ExtendTSPBuffer() routine and changed calls to
+\par \tab \tab PVROSExtendTSPBuffer().
+\par \tab d3dtri.c changed from 1.23 to 1.24
+\par \tab \tab Removed ExtendTSPBuffer() routine and changed to calls to
+\par \tab \tab PVROSExtendTSPBuffer() routine.
+\par \tab pvrosapi.h changed from 1.76 to 1.77
+\par \tab \tab Added PVROSExtendTSPBuffer() to PVROS.dll .
+\par \tab brdsetup.c changed from 1.70 to 1.71
+\par \tab \tab Added routine PVROSExtendTSPBuffer() which is used to extend the TSP
+\par \tab \tab if required. Should be here because it is required by both D3D and
+\par \tab \tab SGLDirec
+\par \tab new_thin.c changed from 1.31 to 1.32
+\par \tab \tab removed call to sgl_delete_all_textures as it was by definition calling
+\par \tab \tab through an illegal fn ptr
+\par \plain\f2\fs20\b _______________________________________________________________________
+\par 
+\par Build Info - 4.1.0.1 (27th October, 1997)
+\par 
+\par Overview
+\par ========
+\par \plain\f2\fs20 
+\par \tab The following changes have been made available
+\par \tab with regards to D3D functionality :
+\par 
+\par \tab \tab Draw Primitive support is now enabled
+\par 
+\par \tab \tab Clockwise culling has been added
+\par 
+\par \tab \tab Decal has been added
+\par 
+\par \tab \tab The HAL now uses Z instead of 1/w for surface removal
+\par 
+\par \plain\f2\fs20\b SGL Changes
+\par ===========
+\par \plain\f2\fs20 \tab d3dcore.h changed from 1.7 to 1.9
+\par \tab \tab 1.9 : Set D3D using Z (instead of 1/w) as default. USERHW set to 0.
+\par \tab \tab \tab Added checking for ->fZ[x] result negative. Indication that
+\par \tab \tab \tab Z > 1 specified. If so then set to 0. ie at infinity.
+\par \tab \tab 1.8 : 1. Added routines that used to reside in dcore.h which are
+\par \tab \tab \tab required for D3D.
+\par \tab \tab \tab 2. Implemented facility to use Z instead of 1/w for surface removal.
+\par \tab \tab \tab Currently disabled.
+\par \tab \tab \tab 3. Implemented clockwise culling.
+\par \tab debug.c changed from 1.59 to 1.61
+\par \tab \tab 1.61 :  changed the number of shared buffer for DPFDEV into a parameter 
+\par \tab \tab \tab   NUMBER_OF_SHARED_BUFFER.
+\par \tab \tab 1.60 :  added more shared buffer in dfprintf() for PostMessage(0.
+\par \tab dpack.h changed from 1.3 to 1.4
+\par \tab \tab Removed pack funcs from dtri and put here
+\par \tab dtri.c changed from 1.137 to 1.138
+\par \tab \tab added timing metrics for developer's driver.
+\par \tab d3dtri.c changed from 1.22 to 1.23
+\par \tab \tab Implemented decal texturing. Passed in context flags (0x8).
+\par \tab dtsp.h changed from 1.9 to 1.10
+\par \tab \tab Added prototype definitions for PackTSPFlatDecal() and
+\par \tab \tab PackFlatDecalAndStore().
+\par \tab dvdevice.c changed from 1.48 to 1.50
+\par \tab \tab 1.50 :  changed timing unit into millisecond.
+\par \tab \tab 1.49 :  added tow functions for timing metrics in developer's driver.
+\par \tab pvrd.c changed from 1.85 to 1.86
+\par \tab \tab Added gfInvertZ which is used to calculate the 1/w for the ISP
+\par \tab \tab from the provided Z.
+\par \tab pvrosapi.h changed from 1.75 to 1.76
+\par \tab \tab changed the prototype of PVROSDbgDevBuffer().
+\par \tab sgllite.c changed from 1.80 to 1.82
+\par \tab \tab 1.82 :  changed timing unit into millisecond.
+\par \tab \tab 1.81 :  added timing metrics for developer's driver.
+\par \tab d3dtriml.asm changed from 1.8 to 1.10
+\par \tab \tab 1.10 :  Now use Z for D3D as default. ie set USERHW to 0.
+\par \tab \tab 1.9  :  1. Included routines that used to be in dcore.h .
+\par \tab \tab \tab   2. Added code to use Z instead of 1/w (compiled out at the moment).
+\par \tab \tab \tab   3. Added clockwise culling.
+\par \tab system.c changed from 1.88 to 1.90
+\par \tab \tab 1.90 :  changed the number of shared buffer for DPFDEV into a parameter NUMBER_OF_
+\par \tab \tab \tab   SHARED_BUFFER.
+\par \tab \tab 1.89 :  changed PVROSDbgDevBuffer().
+\par \tab hwregs.c changed from 1.83 to 1.84
+\par \tab \tab added timing for waiting for HW in HWStartRender().
+\par \tab Makefile changed from 1.64 to 1.65
+\par \tab \tab Added new files for D3D d3dlines.c and d3dpoints to replace
+\par \tab \tab dlines.c and dpoints.c respectively. This is required so that
+\par \tab \tab we can select between using Z and 1/w.
+\par \tab pcmake.mak changed from 1.36 to 1.37
+\par \tab \tab added a compile option DLL_METRIC in developer build.\plain\f2\fs20\b 
+\par 
+\par HAL Changes
+\par ===========
+\par 
+\par \plain\f2\fs20 \tab d3dpvros.c\tab 1.20.to 1.21
+\par \tab \tab Enabled possible culling modes; none clockwise & counter clockwise
+\par \tab \tab Set eFilterType in the context to enable FourCC control
+\par \tab drawprim.c\tab 1.10 to 1.11
+\par \tab \tab Fixed CK and alpha blending stuff
+\par \tab \tab Removed start of frame stuff from routines since it should
+\par \tab \tab already have been called
+\par \tab pvrd3d.h\tab 1.4 to 1.5
+\par \tab \tab Added FourCC control of filtering and trans sorting
+\par \tab pvrd3dcb.c\tab 1.51 to 1.52
+\par \tab \tab Added decal texture render state support
+\par \tab \tab Added 3 different culling modes; none clockwise & counter clockwise
+\par \tab pvrddcb.c\tab 1.18 to 1.19
+\par \tab \tab Added FourCC control of filtering and trans sorting
+\par \tab \tab trans sorting is currently disabled
+\par \tab pvrhal32.c\tab 1.153 to 1.155
+\par \tab \tab 1.155 :  Enabled draw primitive stuff. i.e. set DRAWPRIM=1
+\par \tab \tab 1.154 :  Export clockwise culling cap
+\par \tab \tab \tab    Export decal texture cap
+\par \tab pvrhal32.h\tab 1.78 to 1.79
+\par \tab \tab Added eFilterType to tontext to allow FourCC control
+\par \tab \tab Changed fBFCull to nBFCull since there are 3 different culling
+\par \tab \tab modes possible
+\par \tab pvrhal32.mak1.40 to 1.41
+\par \tab \tab Included drawprim.c into the build
+\par \plain\f2\fs20\b ________________________________________________________________________
+\par 
+\par }
+ 

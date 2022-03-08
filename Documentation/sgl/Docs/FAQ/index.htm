@@ -1,0 +1,457 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>FAQ</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="../index.htm">Up</a></nobr><br><nobr><a href="../sgldirect.htm">SGLDirect&nbsp;Reference</a></nobr><br><nobr><a href="../sgl.htm">SGL&nbsp;Reference</a></nobr><br><nobr><a href="../DDraw.htm">DirectDraw&nbsp;Programming</a></nobr><br><nobr><a href="../Direct3D.htm">Direct3D&nbsp;Programming</a></nobr><br><nobr><a href="../SGLguide.htm">SGL&nbsp;Programming</a></nobr><br><nobr><a href="../Perform.htm">Performance&nbsp;Notes</a></nobr><br><nobr><a href="../debug.htm">Debug&nbsp;and&nbsp;Timing&nbsp;Utilities</a></nobr><br><nobr><a href="../PCIcard.htm">PCI&nbsp;Card&nbsp;Installation</a></nobr><br><nobr>FAQ</nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+
+<p>&nbsp;</p>
+<b>
+
+<p><font face="Verdana"><small>Contents</small></font></b><font face="Verdana"><small><br>
+</small></font></p>
+
+<blockquote>
+  <a HREF="../faq/index.htm#FAQ01"><p><font face="Verdana"><small>What do I do when I get the error
+  message <tt>&quot;Cannot load SGL.DLL&quot;</tt>?</small></font></a><font face="Verdana"><small><br>
+  <a HREF="../faq/index.htm#FAQ02">I have an S3 868/968 graphics card and my system crashes when I
+  attempt to use PowerVR.</a><br>
+  <a HREF="../faq/index.htm#FAQ03">How do I set up a simple debug environment for PowerVR ?</a><br>
+  <a HREF="../faq/index.htm#FAQ04">My 2D overlay 'tears' or 'flickers' with drivers 4.0.0b4 or
+  later.</a><br>
+  <a HREF="../faq/index.htm#FAQ05">My SGL Direct program breaks during initialization with drivers
+  4.0.0b4 or later.</a><br>
+  <a HREF="../faq/index.htm#FAQ06">How do I detect which PowerVR chip (PCX1/PCX2) is present ?</a><br>
+  <a HREF="../faq/index.htm#FAQ07">Why does <tt>ConvertBMPtoSGL()</tt> not work when using a Watcom
+  compiler ?</a><br>
+  <a HREF="../faq/index.htm#FAQ08">What do I need to consider for bilinear mode operation ?</a><br>
+  <a HREF="../faq/index.htm#FAQ09">Does PowerVR support hardware clipping ?</a><br>
+  <a HREF="../faq/index.htm#FAQ10">Can I do n-sided polygons rather than just triangles on PowerVR
+  ?</a><br>
+  <a HREF="../faq/index.htm#FAQ11">How do I get maximum performance with PowerVR ?</a><br>
+  <a HREF="../faq/index.htm#FAQ12">What is the most important performance optimization for PowerVR
+  ?</a><br>
+  <a HREF="../faq/index.htm#FAQ13">Alpha Blending doesn't work in my DX5 Direct3D application.</a><br>
+  <a HREF="../faq/index.htm#FAQ14">My system locks up during sound initialisation when running
+  GLQuake on PCX2.</a><br>
+  <a HREF="../faq/index.htm#FAQ15">My system crashes when using PCX2 together with my Imagine 128
+  Series 2 graphics card.</a><br>
+  <a HREF="../faq/index.htm#FAQ16">My system hangs in VC++5.0 on exit of Direct3D application in
+  debugger mode.</a><br>
+  <a HREF="../faq/index.htm#FAQ17">On PCX2, frequently updated textures look corrupt - why?</a><br>
+  <a HREF="../faq/index.htm#FAQ18">Can I define Application Specific Settings (AppHints) in my
+  application?</a><br>
+  <a HREF="../faq/index.htm#FAQ19">My PowerVR PCX2 application crashes when playing videos. What
+  can I do ?</a><br>
+  <a HREF="../faq/index.htm#FAQ20">IDirectDraw4::GetDeviceIdentifier still reports PCX2 as the
+  active device after switching the PCX2 HAL off in the control panel. Why ?</a><br>
+  <a HREF="../faq/index.htm#FAQ21">I am using MS VisualC++5.0. Running my application in debug mode
+  on PCX2 makes my machine crash after the D3D device is released. What can I do ?</a><br>
+  </small></font></p>
+</blockquote>
+
+<p ALIGN="CENTER">&nbsp;</p>
+
+<blockquote>
+  <p><small><a NAME="FAQ01"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">What do I do when I get the error message <tt>&quot;Cannot
+  load SGL.DLL&quot;</tt>?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">This may be a problem with a previously run application not
+    closing the VXD properly. <br>
+    Try running <a href="../../Tools/f/resetvxd.exe">resetvxd.exe</a> (if you have driver
+    version 3.1.0b4 or later). <a href="../../Tools/f/resetvxd.txt">resetvxd.txt</a>.</font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ02"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">I have an S3 868/968 graphics card and my system crashes
+  when I attempt to use PowerVR.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">There is a bug in some S3 chips causing an error in memory
+    allocation at boot time. <br>
+    Have a look at the <a HREF="../faq/S3.htm">S3 memory allocation problem</a> page to solve this
+    problem.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ03"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">How do I set up a simple debug environment for PowerVR ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">If you are using the DirectDraw Mode of SGL Direct you can
+    opt to have the render not use the built-in DirectDraw surface, but blit to the GUI
+    screen. This can be convenient for debugging as the DirectDraw screen is not used and will
+    not change resolutions or create a lock on the surface.</font></small></p>
+    <p><small><font face="Verdana">For driver version <b>before and including 4.0.0b3</b>, edit
+    sglhw.ini and change<br>
+    <tt>mode=ddraw</tt> in the <tt>[mode]</tt> section to <tt>mode=desktop</tt>.<br>
+    Note that the 2D callback will not be called.</font></small></p>
+    <p><small><font face="Verdana">For driver version <b>4.0.0b4 and higher</b>, edit sglhw.ini
+    and add the following<br>
+    <tt>[Debug]</tt><br>
+    <tt>RenderToDesktop=1</tt><br>
+    Note that the 2D callback is called, but you may see 'tearing' due to the fact that the
+    GUI screen will not be locked.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ04"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My 2D overlay 'tears' or 'flickers' with drivers 4.0.0b4 or
+  later.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">The double_buffer boolean in sgl_create_screen_device() is
+    observed in drivers version 4.0.0b4 or later (used to be ignored and double buffering
+    enabled as default).<br>
+    This must now be set correctly for the desired mode - set this to TRUE if you use 2D
+    overlay.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ05"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My SGL Direct program breaks during initialization with
+  drivers 4.0.0b4 or later.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Make sure the call to <tt>sgl_use_ddraw_mode</tt> / <tt>sgl_use_address_mode()</tt>
+    is done before creating the SGL screen device using sgl_create_screen_device().<br>
+    </font></small></p>
+  </blockquote>
+</blockquote>
+
+<blockquote>
+  <p>&nbsp;</p>
+  <h3><small><font face="Verdana">How do I detect which PowerVR chip (PCX1/PCX2) is present ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">In <em>SGL</em> / <em>SGL Direct</em> you can identify the
+    PowerVR chip by calling <tt>sgl_win_versions</tt>. This will return a pointer to a
+    structure containing pci_bridge_device_id, which will have one of the following values,
+    depending on the PowerVR chipset :<br>
+    </font></small></p>
+    <blockquote>
+      <table BORDER="1" CELLPADDING="10">
+        <tr>
+          <td><small><b><font face="Verdana">pci_bridge_device_id</font></b></small></td>
+          <td><small><b><font face="Verdana">Chipset</font></b></small></td>
+        </tr>
+        <tr>
+          <td ALIGN="right"><small><font face="Verdana">0x001F</font></small></td>
+          <td ALIGN="left"><small><font face="Verdana">Midas 3 (pre-PCX1)</font></small></td>
+        </tr>
+        <tr>
+          <td ALIGN="right"><small><font face="Verdana">0x002A</font></small></td>
+          <td ALIGN="left"><small><font face="Verdana">Midas 4 (PCX1)</font></small></td>
+        </tr>
+        <tr>
+          <td ALIGN="right"><small><font face="Verdana">0x0046</font></small></td>
+          <td ALIGN="left"><small><font face="Verdana">Midas 5 (PCX2)</font></small></td>
+        </tr>
+      </table>
+    </blockquote>
+    <p><small><font face="Verdana"><br>
+    Physically on the PowerVR board, the PowerVR chip number will reveal whether it is a PCX1
+    or PCX2 chip: <br>
+    </font></small></p>
+    <blockquote>
+      <table BORDER="1" CELLPADDING="10">
+        <tr>
+          <td><small><b><font face="Verdana">PowerVR chip number</font></b></small></td>
+          <td><small><b><font face="Verdana">Chipset</font></b></small></td>
+        </tr>
+        <tr>
+          <td ALIGN="right"><small><font face="Verdana">XX2010GD</font></small></td>
+          <td ALIGN="left"><small><font face="Verdana">Midas 4 (PCX1)</font></small></td>
+        </tr>
+        <tr>
+          <td ALIGN="right"><small><font face="Verdana">XX2011GD</font></small></td>
+          <td ALIGN="left"><small><font face="Verdana">Midas 5 (PCX2)</font></small></td>
+        </tr>
+      </table>
+    </blockquote>
+    <p><small><font face="Verdana"><br>
+    A generic detection routine which can be used in SGL, SGL Direct and Direct3D applications
+    is provided together with an example windows application in the Tips and Tricks seciton.
+    To download this example please go to the Tips and Tricks <a href="../../Tricks/IsPVRsh/index.htm">PowerVR Detection Example </a>section.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ07"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">Why does <tt>ConvertBMPtoSGL()</tt> not work when using a
+  Watcom compiler ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">The current implementation of <tt>ConvertBMPtoSGL()</tt>
+    returns a structure compatible with Microsoft's standard. However, the returned structure
+    is not compatible with Watcom and therefore calls to <tt>ConvertBMPtoSGL()</tt> fail under
+    Watcom. A different function which will work with Watcom may be available in the future.</font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ08"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">What do I need to consider for bilinear mode operation ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Have a look at the <a HREF="../faq/bilinear.htm">SGL Direct Bilinear
+    Mode Considerations</a> page.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ09"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">Does PowerVR support hardware clipping under SGL Direct ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">YES. PowerVR hardware supports clipping polygons to any
+    rectangle of pixels without a fill rate penalty. Read the <a HREF="../faq/clipping.htm">PowerVR
+    Fast Hardware Clipping</a> notes to find out more.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ10"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">Can I do n-sided polygons rather than just triangles on
+  PowerVR ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Absolutely. Read the notes on <a HREF="../faq/n-gons.htm">High
+    Performance Polygons on PowerVR</a> to find out how you can improve 3D performance of your
+    SGL Direct or Direct3D title by around 35% by using n-sided polygons.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ11"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">How do I get maximum performance with PowerVR ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Read the notes on <a HREF="../faq/optimise.htm">PowerVR Performance
+    Optimizations</a>.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ12"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">What is the most important performance optimization for
+  PowerVR ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Hardware/Software overlap. Due to the fact that PowerVR
+    hardware renders the 3D scene totally asynchronously from the host CPU, useful tasks can
+    be carried out on the CPU whilst waiting for the 3D hardware render to complete. For some
+    useful tips on how to do this, read the notes on <a HREF="../faq/overlap.htm">PowerVR
+    Hardware/Software Overlap</a>.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ13"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">Alpha Blending doesn't work in my DX5 Direct3D application.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">In early versions of the DirectX5 DDK (before Meltdown July
+    97) there was a separata flag 'ALPHABLEND' enumerated as number 42 in D3DRENDERSTATETYPE.
+    This flag was then merged with BLENDENABLE (27) to yield ALPHABLENDENABLE enumerated as
+    27. Therefore, programs compiled with an early version of DirectX5 which set the
+    ALPHABLEND flag will not yield any alpha blending since this flag is no longer supported
+    in DirectX5. The application should either be recompiled with a later version of DirectX5
+    and/or the ALPHABLENDENABLE flag set. <br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ14"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My system locks up during sound initialisation when running
+  GLQuake on PCX2.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">We have heard of problems with PCI sound cards like the
+    &quot;Monster Sound&quot; PCI card on certain motherboard / BIOS configurations. Disabling
+    &quot;PCI Streaming&quot; in the BIOS will solve this problem and allow you to run GL
+    games like GLQuake and GLHexenII in optimised mode on PCX2.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ15"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My system crashes when using PCX2 together with my Imagine
+  128 Series 2 graphics card.</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">There appears to be a bug in the Imagine 128 Series 2
+    DirectDraw driver and/or DirectSound which eventually causes a crash if hardware page
+    flipping is used, eg by running PowerVR. This is a bug in the Imagine 128 drivers.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ16"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My system hangs in VC++5.0 on exit of Direct3D application
+  in debugger mode</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">This is still being investigated and we are waiting on a
+    report back from Microsoft. However we have a work around. There is an interaction with
+    the debugger itself and a call-back in our drivers (the call-back releases any data the
+    driver may have created). This call-back is required by Microsoft and must be called. This
+    works in other debuggers and only happens when the VC5 debugger is running. The work
+    around is to temporarily remove the calls to things like Release(pD3D) at exit. For
+    example, the problem routines in the DX5 SDK, e.g. ex2, are ReleaseD3D() and
+    ReleaseDevice(). If they are commented out and they are at the end of the game, then there
+    will not be a memory leakage as DDraw will clean up anyway (in fact DDraw will call the
+    same call-back (weird huh?) but quit OK, even in the VC debugger). Our recommendation is
+    to use #if DEBUG around these problem calls until we have the answer/fix from Microsoft.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ17"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">On PCX2, frequently updated textures look corrupt - why?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Uploading textures to the PowerVR PCX2 card can coincide with
+    the card actually rendering the previous frame. This is not a problem unless you are
+    actually overwriting the texture which the card is rendering from at the same moment in
+    time. This will result in that texture appearing corrupted on the screen. In order to
+    solve this problem, upload the textures just before Endscene. When using Direct3D, to
+    ensure that PowerVR has finished rendering the previous frame, lock the render surface
+    using the DDLOCK_WAIT flag and then immediately unlock it again, followed by the texture
+    upload. In SGL Direct, use sgltri_isrendercomplete() to make sure the hardware has
+    finished rendering before uploading the textures.<br>
+    Uploading textures just before Endscene is recommended for performance reasons also on
+    PCX1.</font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ18"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">Can I define Application Specific Settings (AppHints) in my
+  application ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Yes you can. Other than modifying AppHints through the
+    PowerVR Control Panel (via Display Properties) your application can create AppHints by
+    using our PVRCreateAppHint function. Go to the <a href="../../Tricks/AppHint/index.htm">PowerVR
+    AppHints page</a> to learn more about this and download the associated files.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ19"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">My PowerVR PCX2 application crashes when playing videos.
+  What can I do ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">We are aware of an 'undocumented feature' which has to do
+    with creating / destroying DirectDraw surfaces in sequence. Typically this may happen when
+    creating a DirectDraw surface for playing a video and subsequently deleting that surface
+    and creating a new DirectDraw surface for 3D. This may cause the system to hang, probably
+    due to timing issues. Creating a single DirectDraw surface for 3D graphics and using that
+    same surface for video playback seems to solve this problem. <br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ20"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">IDirectDraw4::GetDeviceIdentifier still reports PCX2 as the
+  active device after switching the PCX2 HAL off in the control panel. Why ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">Using the <a href="../../Tools/f/3dcc.zip">3D Control Center</a>
+    utility to switch between 3D hardware devices will ensure the primary HAL is correctly
+    selected and reported by GetDeviceIdentifier. For PCX2 detection, using our <a href="../../Tricks/IsPVRsh/index.htm">PCX runtime detection</a> code will always work.<br>
+    </font></small></p>
+  </blockquote>
+  <p ALIGN="CENTER">&nbsp;</p>
+</blockquote>
+
+<blockquote>
+  <p><small><a NAME="FAQ21"><font face="Verdana"></font></a></small></p>
+  <h3><small><font face="Verdana">I am using MS VisualC++5.0. Running my application in debug
+  mode on PCX2 makes my machine crash after the D3D device is released. What can I do ?</font></small></h3>
+<lbr>
+  <blockquote>
+    <p><small><font face="Verdana">This problem has now been resolved in VisualC++ version 6.0.<br>
+    </font></small></p>
+  </blockquote>
+</blockquote>
+&nbsp;<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

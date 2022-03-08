@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Performance n-gons</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="bilinear.htm">Bilinear&nbsp;Filtering</a></nobr><br><nobr><a href="clipping.htm">Hardware&nbsp;Clipping</a></nobr><br><nobr>Performance&nbsp;n-gons</nobr><br><nobr><a href="optimise.htm">Performance&nbsp;Optimisations</a></nobr><br><nobr><a href="overlap.htm">HW-SW&nbsp;Overlap</a></nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="s3.htm">S3&nbsp;Memory</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b>
+
+<p><small><font face="Verdana">Performance improvement by using n-sided polygons</font></small></b></p>
+
+<p><b><font face="Verdana" size="4">&nbsp;</font></p>
+
+<p><font face="Verdana" size="4">N-Sided Polygons</font></b><font size="3"></p>
+
+<p><font face="Verdana">&nbsp;</font></font><font size="2"></p>
+
+<p><font face="Verdana">Direct3D and SGL Direct games can improve their performance by
+around 35% by using n-sided polygons with PowerVR instead of just triangles. This reduces
+software driver calculations and data bandwidth to the hardware. The format used ensures
+compatibility with systems that only support triangles.</font></p>
+
+<p><font face="Verdana">SGL Direct has a sgltri_quads function to complement
+sgltri_triangles, but for greater flexibility and performance sgltri_triangles will accept
+triangle lists in Direct3D format when the flags SGLTT_FACESIND3DFORMAT and
+SGLTT_USED3DSTRIPFLAGS are set. Look up 'triangle flags' in the Direct3D SDK help file for
+a full description of this format.</font></p>
+
+<p><font face="Verdana">The PowerVR driver converts fans (with either all triangles having
+the 'even' flag or all triangles having the 'odd' flag) to multi-sided polygons, but you
+must be sure to make each polygon coplanar and convex.</font></p>
+
+<p><font face="Verdana">Only the first triangle of a polygon is used to describe the entire
+polygon face's angle, texturing, shading and alpha blending, but the fourth and subsequent
+vertices should have the appropriate u,v and colour/alpha values in case the polygon is
+subdivided by Direct 3D clipping, or some future optimisation in the PowerVR driver or
+hardware needs to use them. Only the first triangle of the polygon needs to be tested by
+the driver for backface culling.</font></p>
+
+<p><font face="Verdana">For Direct3D programs refer to the PowerVR Direct3D documentation
+for a description of how to set the PowerVR HAL's state to enable reading of the triangle
+flags. They are normally disabled to guard against games not specifically tested on the
+system.</font></font></p>
+
+<p>&nbsp;</p>
+
+<p><small><font face="Verdana">&nbsp;</font></small>
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

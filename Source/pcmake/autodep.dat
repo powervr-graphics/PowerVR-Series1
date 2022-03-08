@@ -1,0 +1,443 @@
+!ifdef SECOND_PASS
+
+!include $(TMP)\dlconvex.d
+!include $(TMP)\dldelete.d
+!include $(TMP)\dlcamera.d
+!include $(TMP)\dllists.d
+!include $(TMP)\dlglobal.d
+!include $(TMP)\dllod.d
+!include $(TMP)\dlmater.d
+!include $(TMP)\dlmesh.d
+!include $(TMP)\dlpoint.d
+!include $(TMP)\dltransf.d
+!include $(TMP)\rnlights.d
+!include $(TMP)\rnmater.d
+!include $(TMP)\rnrender.d
+!include $(TMP)\rnstate.d
+!include $(TMP)\rntransf.d
+!include $(TMP)\rntrav.d
+!include $(TMP)\rnlod.d
+!include $(TMP)\rnpoint.d
+!include $(TMP)\rnqualit.d
+!include $(TMP)\adjacenc.d
+!include $(TMP)\rnconvex.d
+!include $(TMP)\dlobject.d
+!include $(TMP)\rncamera.d
+!include $(TMP)\rnconvpr.d
+!include $(TMP)\rnfshade.d
+!include $(TMP)\array.d
+!include $(TMP)\rnreject.d
+!include $(TMP)\rnmesh.d
+!include $(TMP)\dllights.d
+!include $(TMP)\rnshadow.d
+!include $(TMP)\rnshadrj.d
+!include $(TMP)\dlnewtrn.d
+!include $(TMP)\dlqualit.d
+!include $(TMP)\rntex.d
+!include $(TMP)\rnshade.d
+!include $(TMP)\sgl_init.d
+!include $(TMP)\error.d
+!include $(TMP)\rnglobal.d
+!include $(TMP)\txmops.d
+!include $(TMP)\ldbmp.d
+!include $(TMP)\nm_imp.d
+!include $(TMP)\sgl_math.d
+!include $(TMP)\singmath.d
+!include $(TMP)\dvdevice.d
+!include $(TMP)\metrics.d
+!include $(TMP)\parmbuff.d
+!include $(TMP)\list.d
+!include $(TMP)\dregion.d
+!include $(TMP)\pkisp.d
+!include $(TMP)\pktsp.d
+!include $(TMP)\debug.d
+!include $(TMP)\dsprite.d
+!include $(TMP)\dlines.d
+!include $(TMP)\dpoint.d
+!include $(TMP)\dtex.d
+!include $(TMP)\dtexnp.d
+!include $(TMP)\disp.d
+!include $(TMP)\dtsp.d
+!include $(TMP)\dshade.d
+!include $(TMP)\dtri.d
+!include $(TMP)\sgltri.d
+!include $(TMP)\sgllite.d
+
+!if ""=="WIN32"
+!include $(TMP)\system.d
+!include $(TMP)\display.d
+!include $(TMP)\brdcfg.d
+!include $(TMP)\brdsetup.d
+!include $(TMP)\texif.d
+!include $(TMP)\heap.d
+!include $(TMP)\texapi.d
+!include $(TMP)\tmalloc.d
+!include $(TMP)\profile.d
+!include $(TMP)\callback.d
+!include $(TMP)\debug.d
+
+!include $(TMP)\pvrddll.d
+!include $(TMP)\pvrosif.d
+!include $(TMP)\d3dheap.d
+!include $(TMP)\d3dlines.d
+!include $(TMP)\d3dpoint.d
+!include $(TMP)\dtex.d
+!include $(TMP)\dtexnp.d
+!include $(TMP)\disp.d
+!include $(TMP)\d3dtsort.d
+!include $(TMP)\d3disp.d
+!include $(TMP)\dtsp.d
+!include $(TMP)\d3dreg.d
+!include $(TMP)\d3dtri.d
+!include $(TMP)\metrics.d
+!include $(TMP)\parmbuff.d
+!include $(TMP)\dshade.d
+!include $(TMP)\pvrd.d
+!include $(TMP)\pkisp.d
+!include $(TMP)\pktsp.d
+!include $(TMP)\debug.d
+!include $(TMP)\sgl_math.d
+!include $(TMP)\sgltri.d
+!include $(TMP)\singmath.d
+
+!include $(TMP)\w32dll.d
+!include $(TMP)\hwdevice.d
+!include $(TMP)\sglwin.d
+!include $(TMP)\pvrosif.d
+!include $(TMP)\sglheap.d
+!elseif ""=="DOS32"
+!include $(TMP)\pci.d
+!include $(TMP)\hwdevice.d
+!include $(TMP)\brdcfg.d
+!include $(TMP)\vds.d
+!include $(TMP)\vesa.d
+!include $(TMP)\pvrosapi.d
+!include $(TMP)\irq.d
+!include $(TMP)\vxd.d
+!include $(TMP)\texapi.d
+!include $(TMP)\tmalloc.d
+!include $(TMP)\profile.d
+!include $(TMP)\callback.d
+!include $(TMP)\debug.d
+!endif
+
+!if ""=="PCX"
+!include $(TMP)\hwregs.d
+!include $(TMP)\texas.d
+!endif
+
+!else 
+
+\sgl.dep: _d _d \
+	$(TMP)\dlconvex.d 	$(TMP)\dldelete.d \
+	$(TMP)\dlcamera.d 	$(TMP)\dllists.d 	$(TMP)\dlglobal.d \
+	$(TMP)\dllod.d 	$(TMP)\dlmater.d 	$(TMP)\dlmesh.d \
+	$(TMP)\dlpoint.d 	$(TMP)\dltransf.d 	$(TMP)\rnlights.d \
+	$(TMP)\rnmater.d 	$(TMP)\rnrender.d 	$(TMP)\rnstate.d \
+	$(TMP)\rntransf.d 	$(TMP)\rntrav.d 	$(TMP)\rnlod.d \
+	$(TMP)\rnpoint.d 	$(TMP)\rnqualit.d 	$(TMP)\adjacenc.d \
+	$(TMP)\rnconvex.d 	$(TMP)\dlobject.d 	$(TMP)\rncamera.d \
+	$(TMP)\rnconvpr.d 	$(TMP)\rnfshade.d 	$(TMP)\array.d \
+	$(TMP)\rnreject.d 	$(TMP)\rnmesh.d 	$(TMP)\dllights.d \
+	$(TMP)\rnshadow.d 	$(TMP)\rnshadrj.d 	$(TMP)\dlnewtrn.d \
+	$(TMP)\dlqualit.d 	$(TMP)\rntex.d 	$(TMP)\rnshade.d \
+	$(TMP)\sgl_init.d 	$(TMP)\error.d 	$(TMP)\rnglobal.d \
+	$(TMP)\txmops.d 	$(TMP)\ldbmp.d 	$(TMP)\nm_imp.d \
+	$(TMP)\sgl_math.d 	$(TMP)\singmath.d 	$(TMP)\dvdevice.d \
+	$(TMP)\metrics.d 	$(TMP)\parmbuff.d 	$(TMP)\list.d \
+	$(TMP)\dregion.d 	$(TMP)\pkisp.d 	$(TMP)\pktsp.d \
+	$(TMP)\debug.d 	$(TMP)\dsprite.d 	$(TMP)\dlines.d \
+	$(TMP)\dpoint.d 	$(TMP)\dtex.d 	$(TMP)\dtexnp.d \
+	$(TMP)\disp.d 	$(TMP)\dtsp.d 	$(TMP)\dshade.d \
+	$(TMP)\dtri.d 	$(TMP)\sgltri.d 	$(TMP)\sgllite.d 
+	@echo Dependancy file update complete >> \sgl.dep
+
+DOS32_d: \
+	$(TMP)\pci.d 	$(TMP)\hwdevice.d \
+	$(TMP)\brdcfg.d 	$(TMP)\vds.d 	$(TMP)\vesa.d \
+	$(TMP)\pvrosapi.d 	$(TMP)\irq.d 	$(TMP)\vxd.d \
+	$(TMP)\texapi.d 	$(TMP)\tmalloc.d 	$(TMP)\profile.d \
+	$(TMP)\callback.d 	$(TMP)\debug.d debug.d
+
+
+WIN32_d: PVROS_d PVRD_d \
+	$(TMP)\w32dll.d 	$(TMP)\hwdevice.d \
+	$(TMP)\sglwin.d 	$(TMP)\pvrosif.d 	$(TMP)\sglheap.d sglheap.d
+
+
+PCX_d: \
+	$(TMP)\hwregs.d 	$(TMP)\texas.d texas.d
+
+
+PVROS_d: \
+	$(TMP)\system.d 	$(TMP)\display.d \
+	$(TMP)\brdcfg.d 	$(TMP)\brdsetup.d 	$(TMP)\texif.d \
+	$(TMP)\heap.d 	$(TMP)\texapi.d 	$(TMP)\tmalloc.d \
+	$(TMP)\profile.d 	$(TMP)\callback.d 	$(TMP)\debug.d debug.d
+
+
+PVRD_d: \
+	$(TMP)\pvrddll.d 	$(TMP)\pvrosif.d \
+	$(TMP)\d3dheap.d 	$(TMP)\d3dlines.d 	$(TMP)\d3dpoint.d \
+	$(TMP)\dtex.d 	$(TMP)\dtexnp.d 	$(TMP)\disp.d \
+	$(TMP)\d3dtsort.d 	$(TMP)\d3disp.d 	$(TMP)\dtsp.d \
+	$(TMP)\d3dreg.d 	$(TMP)\d3dtri.d 	$(TMP)\metrics.d \
+	$(TMP)\parmbuff.d 	$(TMP)\dshade.d 	$(TMP)\pvrd.d \
+	$(TMP)\pkisp.d 	$(TMP)\pktsp.d 	$(TMP)\debug.d \
+	$(TMP)\sgl_math.d 	$(TMP)\sgltri.d 	$(TMP)\singmath.d singmath.d
+
+
+\sgl.cd: _c _c \
+	$(TMPSRC)\dlconvex.c 	$(TMPSRC)\dldelete.c \
+	$(TMPSRC)\dlcamera.c 	$(TMPSRC)\dllists.c 	$(TMPSRC)\dlglobal.c \
+	$(TMPSRC)\dllod.c 	$(TMPSRC)\dlmater.c 	$(TMPSRC)\dlmesh.c \
+	$(TMPSRC)\dlpoint.c 	$(TMPSRC)\dltransf.c 	$(TMPSRC)\rnlights.c \
+	$(TMPSRC)\rnmater.c 	$(TMPSRC)\rnrender.c 	$(TMPSRC)\rnstate.c \
+	$(TMPSRC)\rntransf.c 	$(TMPSRC)\rntrav.c 	$(TMPSRC)\rnlod.c \
+	$(TMPSRC)\rnpoint.c 	$(TMPSRC)\rnqualit.c 	$(TMPSRC)\adjacenc.c \
+	$(TMPSRC)\rnconvex.c 	$(TMPSRC)\dlobject.c 	$(TMPSRC)\rncamera.c \
+	$(TMPSRC)\rnconvpr.c 	$(TMPSRC)\rnfshade.c 	$(TMPSRC)\array.c \
+	$(TMPSRC)\rnreject.c 	$(TMPSRC)\rnmesh.c 	$(TMPSRC)\dllights.c \
+	$(TMPSRC)\rnshadow.c 	$(TMPSRC)\rnshadrj.c 	$(TMPSRC)\dlnewtrn.c \
+	$(TMPSRC)\dlqualit.c 	$(TMPSRC)\rntex.c 	$(TMPSRC)\rnshade.c \
+	$(TMPSRC)\sgl_init.c 	$(TMPSRC)\error.c 	$(TMPSRC)\rnglobal.c \
+	$(TMPSRC)\txmops.c 	$(TMPSRC)\ldbmp.c 	$(TMPSRC)\nm_imp.c \
+	$(TMPSRC)\sgl_math.c 	$(TMPSRC)\singmath.c 	$(TMPSRC)\dvdevice.c \
+	$(TMPSRC)\metrics.c 	$(TMPSRC)\parmbuff.c 	$(TMPSRC)\list.c \
+	$(TMPSRC)\dregion.c 	$(TMPSRC)\pkisp.c 	$(TMPSRC)\pktsp.c \
+	$(TMPSRC)\debug.c 	$(TMPSRC)\dsprite.c 	$(TMPSRC)\dlines.c \
+	$(TMPSRC)\dpoint.c 	$(TMPSRC)\dtex.c 	$(TMPSRC)\dtexnp.c \
+	$(TMPSRC)\disp.c 	$(TMPSRC)\dtsp.c 	$(TMPSRC)\dshade.c \
+	$(TMPSRC)\dtri.c 	$(TMPSRC)\sgltri.c 	$(TMPSRC)\sgllite.c 
+	@echo C file update complete >> \sgl.cd
+
+DOS32_c: \
+	$(TMPSRC)\dos32\fast.asm 	$(TMPSRC)\dos32\pci.c \
+	$(TMPSRC)\dos32\hwdevice.c 	$(TMPSRC)\dos32\brdcfg.c 	$(TMPSRC)\dos32\vds.c \
+	$(TMPSRC)\dos32\vesa.c 	$(TMPSRC)\dos32\pvrosapi.c 	$(TMPSRC)\dos32\rizla.asm \
+	$(TMPSRC)\dos32\irq.c 	$(TMPSRC)\dos32\isr.asm 	$(TMPSRC)\dos32\vxd.c \
+	$(TMPSRC)\dos32\dispml.asm 	$(TMPSRC)\dos32\dtexml.asm 	$(TMPSRC)\dos32\dtriml.asm \
+	$(TMPSRC)\texapi.c 	$(TMPSRC)\tmalloc.c 	$(TMPSRC)\profile.c \
+	$(TMPSRC)\callback.c 	$(TMPSRC)\debug.c debug.c
+
+
+WIN32_c: PVROS_c PVRD_c \
+	$(TMPSRC)\win32\sgl.rc 	$(TMPSRC)\win32\w32dll.c \
+	$(TMPSRC)\win32\fast.asm 	$(TMPSRC)\win32\hwdevice.c 	$(TMPSRC)\win32\sglwin.c \
+	$(TMPSRC)\win32\dispml.asm 	$(TMPSRC)\win32\dtexml.asm 	$(TMPSRC)\win32\dtriml.asm \
+	$(TMPSRC)\win32\pvrosif.c 	$(TMPSRC)\win32\sglheap.c 	$(TMPSRC)\win32\dtexnpml.asm win32\dtexnpml.asm
+
+
+PCX_c: \
+	$(TMPSRC)\pcx\hwregs.c 	$(TMPSRC)\pcx\texas.c pcx\texas.c
+
+
+PVROS_c: \
+	$(TMPSRC)\win32\system.c 	$(TMPSRC)\win32\display.c \
+	$(TMPSRC)\win32\pvros.rc 	$(TMPSRC)\win32\texapiml.asm 	$(TMPSRC)\win32\pci.asm \
+	$(TMPSRC)\win32\fast.asm 	$(TMPSRC)\win32\brdcfg.c 	$(TMPSRC)\win32\brdsetup.c \
+	$(TMPSRC)\win32\texif.c 	$(TMPSRC)\win32\heap.c 	$(TMPSRC)\texapi.c \
+	$(TMPSRC)\tmalloc.c 	$(TMPSRC)\profile.c 	$(TMPSRC)\callback.c \
+	$(TMPSRC)\debug.c debug.c
+
+
+PVRD_c: \
+	$(TMPSRC)\win32\pvrd.rc 	$(TMPSRC)\win32\pvrddll.c \
+	$(TMPSRC)\win32\fast.asm 	$(TMPSRC)\win32\dispml.asm 	$(TMPSRC)\win32\dtexml.asm \
+	$(TMPSRC)\win32\d3dtriml.asm 	$(TMPSRC)\win32\pvrosif.c 	$(TMPSRC)\win32\d3dheap.c \
+	$(TMPSRC)\win32\dtexnpml.asm 	$(TMPSRC)\d3dlines.c 	$(TMPSRC)\d3dpoint.c \
+	$(TMPSRC)\dtex.c 	$(TMPSRC)\dtexnp.c 	$(TMPSRC)\disp.c \
+	$(TMPSRC)\d3dtsort.c 	$(TMPSRC)\d3disp.c 	$(TMPSRC)\dtsp.c \
+	$(TMPSRC)\d3dreg.c 	$(TMPSRC)\d3dtri.c 	$(TMPSRC)\metrics.c \
+	$(TMPSRC)\parmbuff.c 	$(TMPSRC)\dshade.c 	$(TMPSRC)\pvrd.c \
+	$(TMPSRC)\pkisp.c 	$(TMPSRC)\pktsp.c 	$(TMPSRC)\debug.c \
+	$(TMPSRC)\sgl_math.c 	$(TMPSRC)\sgltri.c 	$(TMPSRC)\singmath.c singmath.c
+
+
+#Include Files 
+\sgl.hd: _h _h \
+	$(TMPSRC)\dpack.h 	$(TMPSRC)\sgltri.h \
+	$(TMPSRC)\dshade.h 	$(TMPSRC)\rnreject.h 	$(TMPSRC)\pvrlims.h \
+	$(TMPSRC)\rnlights.h 	$(TMPSRC)\ordinals.h 	$(TMPSRC)\dfunc.h \
+	$(TMPSRC)\debug.h 	$(TMPSRC)\config.h 	$(TMPSRC)\modauto.h \
+	$(TMPSRC)\rnconvpr.h 	$(TMPSRC)\sglmem.h 	$(TMPSRC)\dcore.h \
+	$(TMPSRC)\error.h 	$(TMPSRC)\rntex.h 	$(TMPSRC)\nm_intf.h \
+	$(TMPSRC)\dlothers.h 	$(TMPSRC)\rncamera.h 	$(TMPSRC)\dtri.h \
+	$(TMPSRC)\d3dtsort.h 	$(TMPSRC)\array.h 	$(TMPSRC)\dlshade.h \
+	$(TMPSRC)\dlglobal.h 	$(TMPSRC)\sgl_init.h 	$(TMPSRC)\profile.h \
+	$(TMPSRC)\dlmater.h 	$(TMPSRC)\syscon.h 	$(TMPSRC)\pvrd.h \
+	$(TMPSRC)\sglres.h 	$(TMPSRC)\parmbuff.h 	$(TMPSRC)\txmops.h \
+	$(TMPSRC)\sglmacro.h 	$(TMPSRC)\dllists.h 	$(TMPSRC)\singmath.h \
+	$(TMPSRC)\sgl_type.h 	$(TMPSRC)\rnshadrj.h 	$(TMPSRC)\sgl_mat2.h \
+	$(TMPSRC)\rnmesh.h 	$(TMPSRC)\rnlod.h 	$(TMPSRC)\metrics.h \
+	$(TMPSRC)\dllights.h 	$(TMPSRC)\rntrav.h 	$(TMPSRC)\texapi.h \
+	$(TMPSRC)\rnconvst.h 	$(TMPSRC)\dprocess.h 	$(TMPSRC)\rnshade.h \
+	$(TMPSRC)\dvdevice.h 	$(TMPSRC)\rntransf.h 	$(TMPSRC)\pktsp.h \
+	$(TMPSRC)\rnfshade.h 	$(TMPSRC)\dtex.h 	$(TMPSRC)\ldbmp.h \
+	$(TMPSRC)\adjacenc.h 	$(TMPSRC)\disp.h 	$(TMPSRC)\pvrosapi.h \
+	$(TMPSRC)\rnconvex.h 	$(TMPSRC)\pto20b.h 	$(TMPSRC)\getnamtb.h \
+	$(TMPSRC)\rnmater.h 	$(TMPSRC)\dltransf.h 	$(TMPSRC)\dlconvex.h \
+	$(TMPSRC)\sgl_api.h 	$(TMPSRC)\dlnodes.h 	$(TMPSRC)\transfor.h \
+	$(TMPSRC)\ldbin.h 	$(TMPSRC)\sgl.h 	$(TMPSRC)\dlpoint.h \
+	$(TMPSRC)\dldelete.h 	$(TMPSRC)\dlntypes.h 	$(TMPSRC)\rnglobal.h \
+	$(TMPSRC)\mod_id.h 	$(TMPSRC)\pmsabre.h 	$(TMPSRC)\texas.h \
+	$(TMPSRC)\dllod.h 	$(TMPSRC)\rnqualit.h 	$(TMPSRC)\hwinterf.h \
+	$(TMPSRC)\dlqualit.h 	$(TMPSRC)\d3dcore.h 	$(TMPSRC)\sgl_math.h \
+	$(TMPSRC)\vfogtab.h 	$(TMPSRC)\rnstate.h 	$(TMPSRC)\pkisp.h \
+	$(TMPSRC)\sgl_defs.h 	$(TMPSRC)\list.h 	$(TMPSRC)\dlmesh.h \
+	$(TMPSRC)\dlobject.h 	$(TMPSRC)\dtsp.h 	$(TMPSRC)\tmalloc.h \
+	$(TMPSRC)\pvrif.h 	$(TMPSRC)\dregion.h 	$(TMPSRC)\texapip.h \
+	$(TMPSRC)\rnpoint.h 	$(TMPSRC)\rnshadow.h 	$(TMPSRC)\modauto.h 
+	@echo H file update complete >> \sgl.hd
+
+DOS32_h: \dos32\version.h \
+	$(TMPSRC)\dos32\isr.h 	$(TMPSRC)\dos32\brdcfg.h \
+	$(TMPSRC)\dos32\pci.h 	$(TMPSRC)\dos32\pvrosmem.h 	$(TMPSRC)\dos32\irq.h \
+	$(TMPSRC)\dos32\fogtable.h 	$(TMPSRC)\dos32\vds.h 	$(TMPSRC)\dos32\pvrosio.h \
+	$(TMPSRC)\dos32\vesa.h 	$(TMPSRC)\dos32\defs.h dos32\defs.h
+
+
+WIN32_h: \win32\version.h \
+	$(TMPSRC)\win32\pvrosif.h 	$(TMPSRC)\win32\brdcfg.h \
+	$(TMPSRC)\win32\rectable.h 	$(TMPSRC)\win32\sglwin.h 	$(TMPSRC)\win32\sglddraw.h \
+	$(TMPSRC)\win32\w32dll.h 	$(TMPSRC)\win32\fogtable.h 	$(TMPSRC)\win32\pvrosio.h \
+	$(TMPSRC)\win32\sglwin32.h 	$(TMPSRC)\win32\heap.h 	$(TMPSRC)\win32\pci.h \
+	$(TMPSRC)\win32\verrc.rc win32\verrc.rc
+
+
+PCX_h: \
+	$(TMPSRC)\pcx\rectable.h 	$(TMPSRC)\pcx\brdsetup.h \
+	$(TMPSRC)\pcx\hwtexas.h 	$(TMPSRC)\pcx\hwregs.h pcx\hwregs.h
+
+
+second_pass:
+	echo  SECOND_PASS=1
+	@ SECOND_PASS=1
+
+!endif
+
+#Dummy Targets for Auto Dependancies 
+
+$(TMP)\dlconvex.obj:dlconvex.obj
+$(TMP)\dldelete.obj:dldelete.obj
+$(TMP)\dlcamera.obj:dlcamera.obj
+$(TMP)\dllists.obj:dllists.obj
+$(TMP)\dlglobal.obj:dlglobal.obj
+$(TMP)\dllod.obj:dllod.obj
+$(TMP)\dlmater.obj:dlmater.obj
+$(TMP)\dlmesh.obj:dlmesh.obj
+$(TMP)\dlpoint.obj:dlpoint.obj
+$(TMP)\dltransf.obj:dltransf.obj
+$(TMP)\rnlights.obj:rnlights.obj
+$(TMP)\rnmater.obj:rnmater.obj
+$(TMP)\rnrender.obj:rnrender.obj
+$(TMP)\rnstate.obj:rnstate.obj
+$(TMP)\rntransf.obj:rntransf.obj
+$(TMP)\rntrav.obj:rntrav.obj
+$(TMP)\rnlod.obj:rnlod.obj
+$(TMP)\rnpoint.obj:rnpoint.obj
+$(TMP)\rnqualit.obj:rnqualit.obj
+$(TMP)\adjacenc.obj:adjacenc.obj
+$(TMP)\rnconvex.obj:rnconvex.obj
+$(TMP)\dlobject.obj:dlobject.obj
+$(TMP)\rncamera.obj:rncamera.obj
+$(TMP)\rnconvpr.obj:rnconvpr.obj
+$(TMP)\rnfshade.obj:rnfshade.obj
+$(TMP)\array.obj:array.obj
+$(TMP)\rnreject.obj:rnreject.obj
+$(TMP)\rnmesh.obj:rnmesh.obj
+$(TMP)\dllights.obj:dllights.obj
+$(TMP)\rnshadow.obj:rnshadow.obj
+$(TMP)\rnshadrj.obj:rnshadrj.obj
+$(TMP)\dlnewtrn.obj:dlnewtrn.obj
+$(TMP)\dlqualit.obj:dlqualit.obj
+$(TMP)\rntex.obj:rntex.obj
+$(TMP)\rnshade.obj:rnshade.obj
+$(TMP)\sgl_init.obj:sgl_init.obj
+$(TMP)\error.obj:error.obj
+$(TMP)\rnglobal.obj:rnglobal.obj
+$(TMP)\txmops.obj:txmops.obj
+$(TMP)\ldbmp.obj:ldbmp.obj
+$(TMP)\nm_imp.obj:nm_imp.obj
+$(TMP)\sgl_math.obj:sgl_math.obj
+$(TMP)\singmath.obj:singmath.obj
+$(TMP)\dvdevice.obj:dvdevice.obj
+$(TMP)\metrics.obj:metrics.obj
+$(TMP)\parmbuff.obj:parmbuff.obj
+$(TMP)\list.obj:list.obj
+$(TMP)\dregion.obj:dregion.obj
+$(TMP)\pkisp.obj:pkisp.obj
+$(TMP)\pktsp.obj:pktsp.obj
+$(TMP)\debug.obj:debug.obj
+$(TMP)\dsprite.obj:dsprite.obj
+$(TMP)\dlines.obj:dlines.obj
+$(TMP)\dpoint.obj:dpoint.obj
+$(TMP)\dtex.obj:dtex.obj
+$(TMP)\dtexnp.obj:dtexnp.obj
+$(TMP)\disp.obj:disp.obj
+$(TMP)\dtsp.obj:dtsp.obj
+$(TMP)\dshade.obj:dshade.obj
+$(TMP)\dtri.obj:dtri.obj
+$(TMP)\sgltri.obj:sgltri.obj
+$(TMP)\sgllite.obj:sgllite.obj
+!if ""=="WIN32"
+$(TMP)\system.obj:system.obj
+$(TMP)\display.obj:display.obj
+$(TMP)\brdcfg.obj:brdcfg.obj
+$(TMP)\brdsetup.obj:brdsetup.obj
+$(TMP)\texif.obj:texif.obj
+$(TMP)\heap.obj:heap.obj
+$(TMP)\texapi.obj:texapi.obj
+$(TMP)\tmalloc.obj:tmalloc.obj
+$(TMP)\profile.obj:profile.obj
+$(TMP)\callback.obj:callback.obj
+$(TMP)\debug.obj:debug.obj
+
+$(TMP)\pvrddll.obj:pvrddll.obj
+$(TMP)\pvrosif.obj:pvrosif.obj
+$(TMP)\d3dheap.obj:d3dheap.obj
+$(TMP)\d3dlines.obj:d3dlines.obj
+$(TMP)\d3dpoint.obj:d3dpoint.obj
+$(TMP)\dtex.obj:dtex.obj
+$(TMP)\dtexnp.obj:dtexnp.obj
+$(TMP)\disp.obj:disp.obj
+$(TMP)\d3dtsort.obj:d3dtsort.obj
+$(TMP)\d3disp.obj:d3disp.obj
+$(TMP)\dtsp.obj:dtsp.obj
+$(TMP)\d3dreg.obj:d3dreg.obj
+$(TMP)\d3dtri.obj:d3dtri.obj
+$(TMP)\metrics.obj:metrics.obj
+$(TMP)\parmbuff.obj:parmbuff.obj
+$(TMP)\dshade.obj:dshade.obj
+$(TMP)\pvrd.obj:pvrd.obj
+$(TMP)\pkisp.obj:pkisp.obj
+$(TMP)\pktsp.obj:pktsp.obj
+$(TMP)\debug.obj:debug.obj
+$(TMP)\sgl_math.obj:sgl_math.obj
+$(TMP)\sgltri.obj:sgltri.obj
+$(TMP)\singmath.obj:singmath.obj
+
+$(TMP)\w32dll.obj:w32dll.obj
+$(TMP)\hwdevice.obj:hwdevice.obj
+$(TMP)\sglwin.obj:sglwin.obj
+$(TMP)\pvrosif.obj:pvrosif.obj
+$(TMP)\sglheap.obj:sglheap.obj
+!elseif ""=="DOS32"
+$(TMP)\pci.obj:pci.obj
+$(TMP)\hwdevice.obj:hwdevice.obj
+$(TMP)\brdcfg.obj:brdcfg.obj
+$(TMP)\vds.obj:vds.obj
+$(TMP)\vesa.obj:vesa.obj
+$(TMP)\pvrosapi.obj:pvrosapi.obj
+$(TMP)\irq.obj:irq.obj
+$(TMP)\vxd.obj:vxd.obj
+$(TMP)\texapi.obj:texapi.obj
+$(TMP)\tmalloc.obj:tmalloc.obj
+$(TMP)\profile.obj:profile.obj
+$(TMP)\callback.obj:callback.obj
+$(TMP)\debug.obj:debug.obj
+!endif
+!if ""=="PCX"
+$(TMP)\hwregs.obj:hwregs.obj
+$(TMP)\texas.obj:texas.obj
+!endif

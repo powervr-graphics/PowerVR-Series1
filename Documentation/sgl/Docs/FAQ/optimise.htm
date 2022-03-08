@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Performance Optimisations</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr><a href="bilinear.htm">Bilinear&nbsp;Filtering</a></nobr><br><nobr><a href="clipping.htm">Hardware&nbsp;Clipping</a></nobr><br><nobr><a href="n-gons.htm">Performance&nbsp;n-gons</a></nobr><br><nobr>Performance&nbsp;Optimisations</nobr><br><nobr><a href="overlap.htm">HW-SW&nbsp;Overlap</a></nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="s3.htm">S3&nbsp;Memory</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b>
+
+<p><font face="Verdana" size="2">Optimising Your Game for PowerVR in <i>SGL Direct</i></font></b></p>
+<font size="2">
+
+<p><font face="Verdana">Ensure the operating mode is set to 'maximum performance' in the
+PowerVR display properties box. If you are using a Matrox graphics card with older drivers
+the mode will always be set to 'maximum compatibility'. More recent Matrox drivers have
+fixed this problem.</font></p>
+
+<p><font face="Verdana">For PowerVR Immediate mode Direct3D is about 20-25% slower than SGL
+Direct, or much slower still if the D3D transformation and lighting modules are used - do
+the geometry and lighting calculations in the application itself and supply D3DTLVERTEX
+structures in the vertex list of the execute buffer.</font></p>
+
+<p><font face="Verdana">The DrawPrimitive is not yet publicly available (Direct3D will
+automatically convert the instructions into execute buffer format). We expect
+DrawPrimitive to substantially exceed ExecuteBuffer performance when completed.</font></p>
+
+<p><font face="Verdana">SGL Direct is much faster than SGL meshes or convexes. SGL is
+intended as a high level language for ease of programming, though its long term future is
+under review.</font></p>
+
+<p><font face="Verdana">To maximise use of the Pentium's instruction cache do all
+transformation, lighting and projection for the entire scene before sending all of the
+triangles to the PowerVR driver with sgltri_triangles/quads calls.</font></p>
+
+<p><font face="Verdana">Share vertices between adjacent triangles wherever possible to
+minimise the size of the vertex buffer to be traversed.</font></p>
+
+<p><font face="Verdana">Overlapping and optimal 2D and texture memory accessing times (see
+previous chapter). Also, to improve reaction times (though not the frame rate) do the
+blit/flip as soon as the hardware render is complete - don't leave it until just before
+the next render call.</font></p>
+
+<p><font face="Verdana">Minimise the number of calls to sgltri_triangles/quads. Group
+polygons together by sorting by texture instead of Z.</font></p>
+
+<p><font face="Verdana">For games (usually Playstation conversions) that store multiple
+textures in single large hardware texture maps, reconfigure the artwork so all opaque
+textures are in separate texture maps from the translucent textures (including colour key
+transparency). This also allows use of 555 colour depth instead of 444. Alternatively in
+D3D switch off alpha blending for triangles that don't use translucent parts of textures;
+or in SGL Direct set the SGLTT_OPAQUE flag when using opaque areas of 4444 textures.</font></p>
+
+<p><font face="Verdana">Use mipmapping for all textures. SGLTT_MIPMAPOFFSET can be used to
+reduce or remove any undesirable blurring effects of mipmapping. If switching bilinear off
+increases performance then mipmapping will definitely help, especially in bilinear mode.
+Remember that PowerVR always has at least 3.5Mb of texture memory so there is planty of
+space for the extra 30% for mipmapping.</font></p>
+
+<p><font face="Verdana">Using 'adaptive bilinear' filtering on mipmapped textures is often
+faster than normal bilinear because the adaptive mode interpolates between the mipmap
+levels (two texture reads per pixel) instead of always within the current level (four
+reads per pixel). Both use normal bilinear (four reads) for the top mipmap level.</font></p>
+
+<p><font face="Verdana">To experiment with these bilinear modes go to the 'Advanced' section
+of the PowerVR display properties box.</font></p>
+
+<p><font face="Verdana">Use quads as well as triangles (a quad is 35-40% faster than two
+triangles). In both Direct3D and SGL Direct you can use 4,5,6,7... sided polygons. See
+earlier chapter for how to do this.</font></p>
+
+<p><font face="Verdana">There is a separate chapter on texturing and translucency that
+describes how to maximise translucent polygon performance.</font></p>
+
+<p><font face="Verdana">For high frame rate games that have static backgrounds, do the
+background in 2D, and use DONT_RENDER_EMPTY_REGIONS. When doing this put the background
+only into the bounding box of regions that contain 3D objects. See the chapter on clipping
+for more information.</font></p>
+
+<p><font face="Verdana">Smaller 2D items may be faster to render in 3D than to blit in 2D.</font></p>
+
+<p><font face="Verdana">Specify pixel bounding boxes for shadows and light volumes. Make the
+bounding boxes as small as possible to fit the shadows. This reduces the number of 32x32
+regions in which the shadow volumes are compared with the positions of the visisble
+objects.</font></p>
+
+<p><font face="Verdana">Instead of doing multiple renders, put all scenes/viewports for the
+frame into a single render. (Multiple renders can cause bad overlap problems unless the
+CPU can be kept usefully busy while each of the hardware renders takes place.)</font></p>
+
+<p><font face="Verdana">Use the fast texture loading function, sgl_direct_set_texture. Store
+the textures in preprocessed native format (0555 or 4444) to achieve the maximum upload
+speed.</font></p>
+
+<p><font face="Verdana">To reduce swapping out to virtual memory store textures in 8-bit
+palettised format to halve system memory usage. They are expanded to 16bit for the
+hardware texture memory on upload, though since PowerVR has at least 3.5Mb this should
+present no problem.</font></p>
+
+<p><font face="Verdana">Try to keep as many of the game&#146;s textures as possible in
+hardware texture memory. Use sgl_get_texture_mem_info for detailed information on what
+storage space is left.</font></p>
+
+<p><font face="Verdana">Don't do software Z sorting as PowerVR does this in hardware without
+any performance cost.</font></font></p>
+
+<p>&nbsp;
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>

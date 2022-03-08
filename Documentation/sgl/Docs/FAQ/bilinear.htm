@@ -1,0 +1,173 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Bilinear Filtering</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+
+
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img name="shape3_r1_c1" src="../../_borders/Component.gif" border="0" width="568" height="65"></td>
+    <td rowspan="2"><a href="http://www.powervr.com" target="_blank"><img border="0" src="../../_borders/PVRtecCorpCentred108.gif" hspace="12" vspace="11" align="top" width="108" height="62"></a></td>
+  </tr>
+  
+  <tr>
+    <td background="../../_borders/strip.gif" width="568" height="31" align="left" valign="middle">
+      <p style="margin-left: 10"><b><font face="Verdana" color="#FFFFFF">PowerVR
+      Series1</font></b></p>
+   </td>
+  </tr>
+</table>
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+
+<p><font face="Verdana" size="1"><nobr><a href="index.htm">Up</a></nobr><br><nobr>Bilinear&nbsp;Filtering</nobr><br><nobr><a href="clipping.htm">Hardware&nbsp;Clipping</a></nobr><br><nobr><a href="n-gons.htm">Performance&nbsp;n-gons</a></nobr><br><nobr><a href="optimise.htm">Performance&nbsp;Optimisations</a></nobr><br><nobr><a href="overlap.htm">HW-SW&nbsp;Overlap</a></nobr><br><nobr><a href="PVRdetect.htm">PowerVR&nbsp;Detection</a></nobr><br><nobr><a href="s3.htm">S3&nbsp;Memory</a></nobr></font></p>
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+
+<p>&nbsp;</p>
+
+<p><big><strong><font face="Verdana">Frequently Asked Questions</font></strong></big></p>
+<b>
+
+<p><small><font face="Verdana">Bilinear Mode Operation</font></small></b></p>
+
+<p align="center">&nbsp;</p>
+
+<h3 align="center"><small><font face="Verdana">This document is part of the <a href="../SGLguide.htm">SGL Programming Guide </a></font></small></h3>
+
+<p><font size="2"><font face="Verdana">&nbsp;</font></p>
+
+<p align="justify"><font face="Verdana">The manufacturing releases of the 4.0 drivers
+support a new field eFilterType in SGL Direct&#146;s SGLCONTEXT structure which sets the
+bilinear filtering mode:</font></p>
+
+<p align="justify"><font face="Verdana">SGLCONTEXT.eFilterType =</font></p>
+
+<ul>
+  <ul>
+    <ul>
+      <ul>
+        <ul>
+          <ul>
+            <p align="justify"><font face="Verdana">0 - point sampling (bilinear off): DEFAULT</font></p>
+            <p align="justify"><font face="Verdana">1 - adaptive bilinear</font></p>
+            <p align="justify"><font face="Verdana">2 - bilinear</font></p>
+          </ul>
+        </ul>
+      </ul>
+    </ul>
+  </ul>
+</ul>
+
+<p align="justify"><font face="Verdana">This value will be read by
+sgltri_startofframe().</font></p>
+
+<p align="justify"><font face="Verdana">SGLCONTEXT.eFilterType is at the same location as
+SGLCONTEXT.u32Reserve9[0] in the 4.0.0b3 driver.</font></p>
+
+<p align="justify"><font face="Verdana">Set the SGLTT_BILINEAR bit in SGLCONTEXT.u32Flags
+for all calls to sgltri_triangles(). This is important for compatibility with future
+hardware revisions that are able to switch bilinear on/off for different triangles in the
+scene.</font></font></p>
+<font size="2">
+
+<p align="justify"><font face="Verdana">Since current PowerVR hardware needs to use a
+constant filtering mode for the whole frame the Direct3D driver uses the state of the
+first set of triangles after BeginScene to determine the mode. Games designed for
+per-triangle filtering systems should send a non-visible dummy triangle with the required
+global state at the start of the frame to ensure the required mode for PowerVR. Without
+this the game may switch from bilinear mode to point sampling from time to time depending
+on the state of the first triangle.</font></p>
+
+<p align="justify"><font face="Verdana">Bilinear filtering is implemented on PowerVR
+according to the OpenGL standard. When a texture is expanded on the screen such that there
+are multiple pixels per texel, the centre of the texel will be the pure texel colour and
+the other pixels will be a weighted average of that texel with its neighbours.</font></p>
+
+<p align="justify"><font face="Verdana">This may cause a slight &#145;wraparound&#146;
+effect for textures that are not designed to repeat multiple times. At U/V values of 0.0
+or 1.0 the colour is an average of the first and last texels in the texture map. Also, U/V
+values of 0.5 will always contain an average of neighbouring texel colours, therefore sub
+textures sharing a single hardware texture page will have their edge texels wrapping into
+each other.</font></p>
+
+<p align="justify"></font><font face="Verdana">&nbsp;</font></p>
+
+<p align="center"><small><font face="Verdana"><img src="../faq/images/blf.gif" WIDTH="628" HEIGHT="450"></font></small></p>
+
+<p><font size="2"><font face="Verdana">&nbsp;</font></p>
+
+<p align="justify">&nbsp;</p>
+
+<p align="justify"><font face="Verdana">To solve these problems U/V values need to be
+brought in away from the edges by half a texel, for example 1/64 to 1-(1/64) for a 32x32
+texture.</font></p>
+
+<p align="justify"><font face="Verdana">Another method is to use U/V flipping (mirroring).
+This is not implemented for actually flipping a texture in bilinear mode but is very
+useful for ensuring the last row and column of the texture map is interpolated with itself
+rather than with the first row/column. For textures that share a texture map some of the
+U/V values will still have to be brought in by half a texel since U/V flipping only
+affects the edges of the hardware texture map. The U/V flipping method is not implemented
+for 256x256 textures.</font></p>
+
+<p align="justify"><font face="Verdana">Future versions of the PowerVR Direct3D driver may
+use U/V flipping for the &#145;clamp&#146; feature in Direct3D.</font></font></p>
+<font size="2">
+
+<p align="justify"><font face="Verdana">Cutout textures ('sprites') using on/off alpha
+transparency which have been generated for non-bilinear hardware will show a dark halo
+around the edges of the cutout image when it appears on screen. This occurs because
+bilinear filtering takes partial samples from pixels beyond the edges of the cutout
+itself. These pixels, usually black, causing the edge of the cutout to blend between the
+cutout colour and black.</font></p>
+
+<p align="justify">&nbsp;</p>
+
+<p align="justify"><font face="Verdana">To solve these problems, it is necessary to
+understand that bilinear filtering must sample beyond the edge of the cutout texture, and
+to colour the surrounding pixels accordingly.</font></p>
+
+<p align="justify"><a href="../faq/files/bilinear.zip"><font face="Verdana"><img align="top" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" width="160" height="25"> 
+Click Here to download a little example
+program which illustrates the (u,v) correction [266K]</font></a></p>
+
+<p><font face="Verdana">... and here is another example program which illustrates the (u,v)
+correction:<br>
+</font></p>
+
+<p align="justify"><a href="../../Examples/files/sgldirect/SGLUVBil.zip"><font face="Verdana"><img align="top" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" width="160" height="25"> 
+SGL Direct
+Version[1653K]</font></a></p>
+
+<p align="justify"><a href="../../Examples/files/d3d/UVBil.zip"><font face="Verdana"><img align="top" border="0" src="../../i/DOWNL-ZIP.gif" NATURALSIZEFLAG="3" width="160" height="25"> 
+Direct3D
+Version[1664K]</font></a></p>
+
+<p><font face="Verdana">Both of these example programs use the <a href="../../Tricks/Shell/index.htm">PowerVR Shell Environment</a>.</font></p>
+
+<p align="justify"><font face="Verdana">The correct method is to take each pixel surrounding
+the cutout in turn and to extend the neighbouring colour to this pixel, by averaging the
+values of any neighbouring (adjacent) pixels which are within the cutout. The alpha value
+of these newly-coloured pixels will remain 1 (equals transparent), as in the original
+case.</font></p>
+
+<p align="justify"><font face="Verdana">To cope with more complex filtering methods in the
+future, such as a multi sampling elliptical filter, the method described should be applied
+right out to the edges of the texture map, rather than just one pixel beyond the cutout.<small><br>
+</small></font></font>
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<em><small><small>
+
+<p align="center">
+<font color="#ff0000" face="Verdana">Confidential / provided under Non-Disclosure Agreement</font></small></small></em><font face="Verdana"><br>
+<strong><small><small><a href="http://www.pvrdev.com/Legal/index.htm">Copyright</a>
+© 1999-2000, PowerVR Technologies and partners. PowerVR Technologies is a division of
+Imagination Technologies Limited.</small></small></strong></font></p>
+</td></tr><!--msnavigation--></table></body>
+</html>
