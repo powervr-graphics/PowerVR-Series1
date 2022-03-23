@@ -1,3 +1,17 @@
+*
+* NOTE:
+* This is a license from 3DCC an application distributed as part of the
+* the documentation, it is an executable that we do not own and do not
+* supply the source code for.
+*
+* The below license statement applies to the following files only!
+* PowerVR-Series1/Documentation/sgl/Drivers/files/410c3X.zip/3dcc.zip
+* PowerVR-Series1/Documentation/sgl/Drivers/files/411c3X.zip/3dcc.zip
+*
+* The rest of the repository remains licensed under the License file
+* inside the root of the repo
+*
+
 This software and documentation are protected by copyright law,
 with all rights reserved. Copyright is held by the author, Jayeson
 Lee-Steere.
